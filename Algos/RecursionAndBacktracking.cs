@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algos
 {
     class RecursionAndBacktracking
     {
-
         static int totalStepPerms = 0;
 
         static int Fibonacci(int num)
@@ -263,7 +259,8 @@ namespace Algos
             }
 
         }
-        public static void Main(string[] args)
+
+        public static void Main2(string[] args)
         {
             //int fib = Fibonacci(6);
             //Console.WriteLine(fib);

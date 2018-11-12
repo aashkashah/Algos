@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algos
 {
@@ -14,7 +12,6 @@ namespace Algos
 
     public class Tree
     {
-
         // checks if a tree is BST
         static bool checkBST(Node root) {
             return CheckBSTHelper2(root, int.MinValue, int.MaxValue);
@@ -51,7 +48,7 @@ namespace Algos
             
         }
 
-        static bool  CheckBSTHelper2(Node node, int min, int max)
+        static bool CheckBSTHelper2(Node node, int min, int max)
         {
             // base case
             if (node == null)
@@ -114,17 +111,67 @@ namespace Algos
             return null; // when will this hit ?
         }
 
-
-        public static void Main2(string[] args)
+        static Node MirrorImageATree(Node root)
         {
-            Node tree = CreateTree();   
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                Node node = queue.Dequeue();
+                SwapChildNodes(node);
+
+                if (node.left != null)
+                {
+                    queue.Enqueue(node.left);
+                }
+                if (node.right != null)
+                {
+                    queue.Enqueue(node.right);
+                }
+            }
+
+            return root;
+        }
+
+        static Node SwapChildNodes(Node node)
+        {
+            if (node != null)
+            {
+                Node temp = node.left;
+                node.left = node.right;
+                node.right = temp;
+            }
+
+            return node;
+        }
+
+        public static void Main(string[] args)
+        {
+            Node tree = CreateTree();
 
             // call tree traversal
             //bool result = checkBST(tree);
 
             // call lca
-            Node lowestCommonAncentor = lca(tree, 10, 14);
-            Console.WriteLine(lowestCommonAncentor.data);
+            //Node lowestCommonAncentor = lca(tree, 10, 14);
+            //Console.WriteLine(lowestCommonAncentor.data);
+
+            // mirror image of a binary tree
+            // convert this to :
+            //              10
+            //      6                 15
+            //  2       7       11          18
+            //              9                   22
+
+            // this :
+            //              10
+            //      15                 6
+            // 18       11       7             2
+            //  22                9  
+
+            MirrorImageATree(tree);
+
         }
 
         static Node CreateTree()
