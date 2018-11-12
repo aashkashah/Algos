@@ -83,9 +83,8 @@ namespace Algos
 
             return total;
         }
-
         
-        // Takes a string and returns all permutations  
+        /// Takes a string and returns all permutations  
         static void PermuteString(string strToPermute)
         {
             PermuteHelper(strToPermute, "");
@@ -117,7 +116,7 @@ namespace Algos
             }
         }
 
-        // Finds all binary combinations of a given number
+        /// Finds all binary combinations of a given number
         static void PrintBinary(int num)
         {
             PrintBinaryHelper(num, "");
@@ -139,7 +138,7 @@ namespace Algos
 
         }
 
-        // Finds all decimal combinations of a given number
+        /// Finds all decimal combinations of a given number
         static void PrintDecimal(int num)
         {
             PrintDecimalHelper(num, "");
@@ -152,8 +151,9 @@ namespace Algos
             {
                 Console.WriteLine(dec);
             }
-            else // recusrsive steps
+            else
             {
+                // recusrsive steps
                 for (int i = 0; i <= 9; i++)
                 {
                     PrintDecimalHelper(num - 1, dec + i);
@@ -161,35 +161,113 @@ namespace Algos
             }
         }
 
+        /// Find all sublists of a given list
         static void Sublists(List<string> list)
         {
-
+            SublistsHelper(list, new List<string>());
         }
 
         static void SublistsHelper(List<string> list, List<string> chosen)
         {
             // base
+            if (list.Count == 0)
+            {
+                Console.WriteLine(chosen);
+            }
+            else
+            {   // recursive
+                for (int i = 0; i < list.Count; i++)
+                {
+                    // choose
+                    string s = list[i];
+                    list.RemoveAt(i);
 
-            // recursive
+                    // explore with
+                    chosen.Add(s);
+                    SublistsHelper(list, chosen);
 
-            // choose
-            string s = list[0];
-            chosen.Add(s);
-            list.RemoveAt(0);
-            
-            // explore
-            SublistsHelper(list, chosen);
+                    // explore without
+                    chosen.RemoveAt(i);
+                    SublistsHelper(list, chosen);
 
-            // un choose
-            chosen.RemoveAt(0);
-            list.Add(s);
+                    // un choose
+                    list.Add(s);
+                }
+            }
         }
 
+        /// Find all possible dice roll combinations
+        /// for a number of dice
+        static void DiceRoll(int num)
+        {
+            //DiceRollHelper(num, new List<int>());
+            DiceRollWithMaxSumHelper(num, 0, 5, new List<int>());
+        }
+
+        static void DiceRollHelper(int dice, List<int> selection)
+        {
+            // base
+            if (dice == 0)
+            {
+                string s = string.Empty;
+                selection.ForEach((elem) => { s += " " + elem.ToString(); });
+                Console.WriteLine(s);
+            }
+            // recursive steps
+            else
+            {
+                for (int i = 1; i <= 6; i++)
+                {
+                    // choose
+                    selection.Add(i);
+
+                    // explore
+                    DiceRollHelper(dice - 1, selection);
+
+                    // un-choose
+                    selection.Remove(i);
+                }
+            }
+
+        }
+
+        /// Find all dice roll combinations that are less than a given number
+        static void DiceRollWithMaxSumHelper(int dice, int currSum, int maxSum, List<int> selection)
+        {
+            // base
+            if (dice == 0) 
+            {
+                string s = string.Empty;
+                selection.ForEach((elem) => { s += " " + elem.ToString(); });
+                Console.WriteLine(s);
+            }
+            // recursive steps
+            else
+            {
+                for (int i = 1; i <= 6; i++)
+                {
+                    if (currSum + i <= maxSum)
+                    {
+                        // choose
+                        selection.Add(i);
+                        currSum += i;
+
+                        // explore
+                        DiceRollWithMaxSumHelper(dice - 1, currSum, maxSum, selection);
+
+                        // un-choose
+                        selection.Remove(i);
+                        currSum -= i; // ?
+                    }
+                }
+            }
+
+        }
         public static void Main(string[] args)
         {
             //int fib = Fibonacci(6);
             //Console.WriteLine(fib);
-            
+
             //int totalStepWays = stepPerms(2, new int[] {5, 1});
             //Console.WriteLine(totalStepWays);
 
@@ -201,7 +279,12 @@ namespace Algos
             //PrintBinary(3);
 
             //PrintDecimal(2);
-            
+
+            //List<string> list = new List<string>() { "Jane", "Marty", "Joe", "Susan" };
+            //Sublists(list);
+
+            //DiceRoll(3);
+
             Console.ReadLine();
 
         }
