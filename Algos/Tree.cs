@@ -12,9 +12,9 @@ namespace Algos
 
     public class Tree
     {
-        // checks if a tree is BST
+        /// checks if a tree is BST
         static bool checkBST(Node root) {
-            return CheckBSTHelper2(root, int.MinValue, int.MaxValue);
+            return checkBSTHelper2(root, int.MinValue, int.MaxValue);
         }
 
         static bool checkBSTHelper(Node node, int min, int max)
@@ -48,7 +48,7 @@ namespace Algos
             
         }
 
-        static bool CheckBSTHelper2(Node node, int min, int max)
+        static bool checkBSTHelper2(Node node, int min, int max)
         {
             // base case
             if (node == null)
@@ -58,7 +58,7 @@ namespace Algos
 
             if (min < node.data && max > node.data)
             {
-                return CheckBSTHelper2(node.left, min, node.data) && CheckBSTHelper2(node.right, node.data, max);
+                return checkBSTHelper2(node.left, min, node.data) && checkBSTHelper2(node.right, node.data, max);
             }
             else
                 return false;
@@ -146,31 +146,17 @@ namespace Algos
             return node;
         }
 
-        public static void Main(string[] args)
+        public static void Main2(string[] args)
         {
             Node tree = CreateTree();
-
-            // call tree traversal
+            
             //bool result = checkBST(tree);
-
-            // call lca
+            
             //Node lowestCommonAncentor = lca(tree, 10, 14);
             //Console.WriteLine(lowestCommonAncentor.data);
-
-            // mirror image of a binary tree
-            // convert this to :
-            //              10
-            //      6                 15
-            //  2       7       11          18
-            //              9                   22
-
-            // this :
-            //              10
-            //      15                 6
-            // 18       11       7             2
-            //  22                9  
-
-            MirrorImageATree(tree);
+            
+            //MirrorImageATree(tree);
+            
 
         }
 
@@ -223,3 +209,25 @@ namespace Algos
         }
     }
 }
+
+
+// mirror image of a binary tree
+// convert this to :
+//              10
+//      6                 15
+//  2       7       11          18
+//              9                   22
+
+// this :
+//              10
+//      15                 6
+// 18       11       7             2
+//    22                9  
+
+
+// level order traversal
+// height of a binary tree
+// bfs, dfs of a tree/graph
+
+// sliding window
+// trapping rain water

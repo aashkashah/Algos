@@ -76,14 +76,27 @@ namespace Algos
             return "NO";
         }
 
-        static long countTriplets(List<long> arr, long r)
+        static void whatFlavors(int[] cost, int money)
         {
+            Dictionary<int, int> seenFlavors = new Dictionary<int, int>();
 
+            for (int i = 0; i < cost.Length; i++)
+            {
+                int firstFlavorCost = money - cost[i];
+                if (seenFlavors.ContainsKey(firstFlavorCost))
+                {
+                    int flavorPos = 0;
+                    seenFlavors.TryGetValue(firstFlavorCost, out flavorPos);
+                    Console.WriteLine(flavorPos + " " + (i+1));
+                    break;
+                }
 
+                seenFlavors.Add(cost[i], i + 1);
+            }
 
-            return int.MinValue;
+            Console.ReadLine();
+
         }
-
 
         public static void Main2(string[] args)
         {
@@ -95,10 +108,9 @@ namespace Algos
             // determine if two strings share a common substring
             //string shareCommonSubStr = twoStrings("hello", "alpha");
             //Console.WriteLine(shareCommonSubStr);
-            
-            // count number of triplets
-            long triplets = countTriplets(new List<long> { 1, 5, 5, 25, 125 }, 5);
-            Console.WriteLine(triplets);
+
+
+            whatFlavors(new int[] { 2, 2, 4, 3 } , 4);
         }
     }
 }

@@ -45,8 +45,10 @@
   <ItemGroup>
     <Compile Include="Array.cs" />
     <Compile Include="Challenges.cs" />
+    <Compile Include="Graph.cs" />
     <Compile Include="Hashmap.cs" />
     <Compile Include="RecursionAndBacktracking.cs" />
+    <Compile Include="Search.cs" />
     <Compile Include="StackAndQueue.cs" />
     <Compile Include="StringManipulation.cs" />
     <Compile Include="Tree.cs" />

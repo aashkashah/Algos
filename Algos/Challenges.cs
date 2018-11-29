@@ -73,8 +73,7 @@ namespace Algos
 
             return 0;
         }
-
-
+        
         static int CountNewBorn(List<FishInfo> fishInfo)
         {
             int fish = 0;
@@ -99,9 +98,76 @@ namespace Algos
         {
             return fishInfo.Where(x => x.Age < 100).ToList();
         }
+        
+        static List<List<int>> ClosestXdestinations(int numDestinations, int[,] allLocations, int numDeliveries)
+        {
+            List<List<int>> allLocationsList = new List<List<int>>(); 
+            for (int i = 0; i < allLocations.Length; i++)
+            {
+                allLocationsList.Add( new List<int> { allLocations[i, 0], allLocations[i, 1] });
+            }
+            
+            List<List<int>> deliveryMap = new List<List<int>>();
+            double currLocation = 0;
+
+            for (int i = 0; i < numDeliveries; i++)
+            {
+                var closestLocation = FindClostestLocation(numDestinations, ref allLocationsList, currLocation);
+                deliveryMap.Add(closestLocation);
+                currLocation = Math.Sqrt(closestLocation[0] + closestLocation[1]);
+            }
+
+            return deliveryMap;
+        }
+
+        static List<int> FindClostestLocation(int numDestinations, ref List<List<int>> allLocations, double startLocation)
+        {   
+            List<double> distances = new List<double>();
+
+            // loop and find all distances
+            for (int i = 0; i < numDestinations; i++)
+            {
+                int x = allLocations[i][0];
+                int y = allLocations[i][1];
+                double distance = Math.Sqrt(x * x + y * y);
+
+                distances.Add(Math.Abs(startLocation - distance));
+            }
+
+            double currMin = distances[0];
+            int minIndex = 0;
+            for (int i = 1; i < distances.Count; i++)
+            {
+                if (distances[i] < currMin)
+                {
+                    minIndex = i;
+                    currMin = distances[i];
+                }
+            }
+
+            List<int> result = new List<int> { allLocations[minIndex][0], allLocations[minIndex][1] };
+
+            allLocations.RemoveAt(minIndex);
+
+            return result;
+        }
 
         public static void Main2(string[] args)
         {
+            int[,] arr = new int[,] 
+            {
+                
+                { 3, 6 },
+                { 2, 4 },
+                { 5, 3 },
+                { 2, 7 },
+                { 1, 8 },
+                { 7, 9 }
+            };
+
+            var temp = ClosestXdestinations(6, arr, 3);
+
+
             List<FishInfo> fishInfo = new List<FishInfo>()
             {
                 new FishInfo()
