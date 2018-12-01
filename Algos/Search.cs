@@ -28,7 +28,7 @@ namespace Algos
         }
 
 
-        public static void Main(string[] args)
+        public static void Main2(string[] args)
         {
             long days = minTime(new long[] { 1, 3, 4 }, 10);
             Console.WriteLine(days);

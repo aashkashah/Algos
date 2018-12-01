@@ -112,7 +112,7 @@ namespace Algos
 
             for (int i = 0; i < numDeliveries; i++)
             {
-                var closestLocation = FindClostestLocation(numDestinations, ref allLocationsList, currLocation);
+                var closestLocation = FindClostestLocation(ref numDestinations, ref allLocationsList, currLocation);
                 deliveryMap.Add(closestLocation);
                 currLocation = Math.Sqrt(closestLocation[0] + closestLocation[1]);
             }
@@ -120,7 +120,7 @@ namespace Algos
             return deliveryMap;
         }
 
-        static List<int> FindClostestLocation(int numDestinations, ref List<List<int>> allLocations, double startLocation)
+        static List<int> FindClostestLocation(ref int numDestinations, ref List<List<int>> allLocations, double startLocation)
         {   
             List<double> distances = new List<double>();
 
@@ -148,6 +148,7 @@ namespace Algos
             List<int> result = new List<int> { allLocations[minIndex][0], allLocations[minIndex][1] };
 
             allLocations.RemoveAt(minIndex);
+            numDestinations--;
 
             return result;
         }

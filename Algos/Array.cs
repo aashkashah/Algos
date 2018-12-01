@@ -72,7 +72,64 @@ namespace Algos
             Console.WriteLine(bribeCount);
         }
 
-        public static void Main2(string[] args)
+        // Sparse arrays
+        // https://www.hackerrank.com/challenges/sparse-arrays/problem
+        static int[] matchingStrings(string[] strings, string[] queries)
+        {
+            int[] result = new int[queries.Length];
+            Dictionary<string, int> occurance = new Dictionary<string, int>();
+
+            for (int i = 0; i < strings.Length; i++)
+            {
+                if (occurance.ContainsKey(strings[i]))
+                {
+                    int count = occurance[strings[i]];
+                    occurance[strings[i]] = count + 1;
+                }
+                else
+                {
+                    occurance.Add(strings[i], 1);
+                }
+            }
+            
+            for(int i = 0; i < queries.Length; i++)
+            {
+                if (occurance.ContainsKey(queries[i]))
+                {
+                    result[i] = occurance[queries[i]];
+                }
+            }
+
+            return result;
+        }
+
+        // https://www.hackerrank.com/challenges/crush/problem
+        static long arrayManipulation(int n, int[][] queries)
+        {
+            long[] result = new long[n];
+
+            for(int i = 0; i < queries.Length; i++)
+            {
+                for (int j = queries[i][0] - 1; j <= queries[i][1] - 1; j++)
+                {
+                    result[j] = result[j] + queries[i][2];
+                }
+            }
+
+            long max = long.MinValue;
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                if (result[i] > max)
+                {
+                    max = result[i];
+                }
+            }
+
+            return max;
+        }
+
+        public static void Main(string[] args)
         {
             int[,] matrix = new int[,] 
             { 
@@ -92,9 +149,21 @@ namespace Algos
             //int[] leftRotate = RotateLeft(arr, 3);
             //Console.WriteLine(leftRotate);
 
-            int[] queue = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
-            minimumBribes(queue);
+            //int[] queue = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
+            //minimumBribes(queue);
 
+            //int[] result = matchingStrings(new string[] { "def", "de", "fgh" }, new string[] { "de", "lmn", "fgh" });
+            //Console.WriteLine(result);
+
+            long result = arrayManipulation(5, new int[][]
+                            {
+                                new int[] { 1, 2, 100 },
+                                new int[] { 2, 5, 200 },
+                                new int[] { 3, 4, 100 }
+                            });
+
+
+            Console.ReadLine();
         }
     }
 }
