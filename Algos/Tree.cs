@@ -65,6 +65,7 @@ namespace Algos
 
         }
 
+        // Find the lowest common ancestor of two nodes in a tree
         static Node lca(Node root, int v1, int v2)
         {   
             Queue<Node> v1Path = new Queue<Node>();
@@ -111,6 +112,7 @@ namespace Algos
             return null; // when will this hit ?
         }
 
+        // Convert tree to a mirror image of itself
         static Node MirrorImageATree(Node root)
         {
             Queue<Node> queue = new Queue<Node>();
@@ -134,6 +136,7 @@ namespace Algos
             return root;
         }
 
+        // Mirror image sub function to swap child nodes 
         static Node SwapChildNodes(Node node)
         {
             if (node != null)
@@ -146,18 +149,43 @@ namespace Algos
             return node;
         }
 
-        public static void Main2(string[] args)
+        // Prints the tree nodes in a level order traversal
+        static void LevelOrder(Node root)
+        {
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+
+            while(queue.Count > 0)
+            {
+                Node node = queue.Dequeue();
+                Console.WriteLine(node.data);
+
+                if (node.left != null)
+                {
+                    queue.Enqueue(node.left);
+                }
+                if (node.right != null)
+                {
+                    queue.Enqueue(node.right);
+                }
+            }
+
+        }
+
+        public static void Main(string[] args)
         {
             Node tree = CreateTree();
-            
+
             //bool result = checkBST(tree);
-            
+
             //Node lowestCommonAncentor = lca(tree, 10, 14);
             //Console.WriteLine(lowestCommonAncentor.data);
-            
-            //MirrorImageATree(tree);
-            
 
+            //MirrorImageATree(tree);
+
+            LevelOrder(tree);
+
+            Console.ReadLine();
         }
 
         static Node CreateTree()
