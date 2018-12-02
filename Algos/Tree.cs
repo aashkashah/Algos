@@ -65,7 +65,7 @@ namespace Algos
 
         }
 
-        // Find the lowest common ancestor of two nodes in a tree
+        /// Find the lowest common ancestor of two nodes in a tree
         static Node lca(Node root, int v1, int v2)
         {   
             Queue<Node> v1Path = new Queue<Node>();
@@ -90,6 +90,7 @@ namespace Algos
             return previous;
         }
 
+        /// LCA helper, finds path to a node and returns in a queue form 
         static Queue<Node> FindPath(Node root, int key, Queue<Node> path)
         {
             path.Enqueue(root);
@@ -112,7 +113,7 @@ namespace Algos
             return null; // when will this hit ?
         }
 
-        // Convert tree to a mirror image of itself
+        /// Convert tree to a mirror image of itself
         static Node MirrorImageATree(Node root)
         {
             Queue<Node> queue = new Queue<Node>();
@@ -149,7 +150,7 @@ namespace Algos
             return node;
         }
 
-        // Prints the tree nodes in a level order traversal
+        /// Prints the tree nodes in a level order traversal
         static void LevelOrder(Node root)
         {
             Queue<Node> queue = new Queue<Node>();
@@ -169,7 +170,43 @@ namespace Algos
                     queue.Enqueue(node.right);
                 }
             }
+            
+        }
 
+        /// Insert given value into a BST and return pointer to the root
+        static Node InsertIntoBST(Node root, int data)
+        {
+            InsertHelper(ref root, data);
+            return root;
+        }
+
+        /// Insert node into BST helper 
+        static void InsertHelper(ref Node root, int data)
+        {
+            if (data < root.data)
+            {
+                if (root.left == null)
+                {
+                    Node node = new Node() { data = data };
+                    root.left = node;
+                }
+                else
+                {
+                    InsertIntoBST(root.left, data);
+                }
+            }
+            else
+            {
+                if (root.right == null)
+                {
+                    Node node = new Node() { data = data };
+                    root.right = node;
+                }
+                else
+                {
+                    InsertIntoBST(root.right, data);
+                }
+            }
         }
 
         public static void Main(string[] args)
@@ -183,7 +220,11 @@ namespace Algos
 
             //MirrorImageATree(tree);
 
-            LevelOrder(tree);
+            //LevelOrder(tree);
+
+            //Node root = InsertIntoBST(tree, 8);
+
+
 
             Console.ReadLine();
         }
