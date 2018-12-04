@@ -129,7 +129,141 @@ namespace Algos
             return max;
         }
 
-        public static void Main2(string[] args)
+        /// <summary>
+        ///  Flip a matrix in a by moving max sum to upper left quadrant
+        ///  Upper left quadrant : n/2 x n/2
+        ///  https://www.hackerrank.com/challenges/flipping-the-matrix/problem
+        /// </summary>
+        /// <returns>Max sum of top left sub matrix (quadrant)</returns>
+        static int FlippingMatrix(int[][] matrix)
+        {
+
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                if (shouldFlipColumn(matrix, i))
+                {
+                    flipColumn(ref matrix, i);
+                }
+            }
+
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                if (shouldFlipRow(matrix, i))
+                {
+                    flipRow(ref matrix, i);
+                }
+            }
+
+            int sum = 0;
+
+            for (int i = 0; i < matrix.Length / 2; i++)
+            {
+                for (int j = 0; j < matrix.Length / 2; j++)
+                {
+                    sum += matrix[i][j];
+                }
+            }
+
+            return sum;
+        }
+
+        static bool shouldFlipColumn(int[][] matrix, int index)
+        {
+            int upperSum = 0;
+            int lowerSum = 0;
+
+            for (int i = 0, j = matrix.Length - 1 ; i < matrix.Length/2; i++, j--)
+            {
+                upperSum += matrix[i][index];
+                lowerSum += matrix[j][index];
+            }
+
+            return lowerSum > upperSum ? true : false;
+        }
+
+        static bool shouldFlipRow(int[][] matrix, int index)
+        {
+            int leftSum = 0;
+            int rightSum = 0;
+
+            for (int i = 0, j = matrix.Length - 1; i < matrix.Length / 2; i++, j--)
+            {
+                leftSum += matrix[index][i];
+                rightSum += matrix[index][j];
+            }
+
+            return rightSum > leftSum ? true : false;
+        }
+
+        static void flipColumn(ref int[][] matrix, int index)
+        {
+            for (int i = 0, j = matrix.Length - 1; i < matrix.Length / 2; i++, j--)
+            {
+                int temp = matrix[i][index];
+                matrix[i][index] = matrix[j][index];
+                matrix[j][index] = temp;
+            }
+        }
+
+        static void flipRow(ref int[][] matrix, int index)
+        {
+            for (int i = 0, j = matrix.Length - 1; i < matrix.Length / 2; i++, j--)
+            {
+                int temp = matrix[index][i];
+                matrix[index][i] = matrix[index][j];
+                matrix[index][j] = temp;
+            }
+        }
+
+        /// Bob and Andy play a game of remove max elem and elems after max elem from list 
+        /// whoever isn't able to remove an elem loses
+        /// Bob starts first
+        /// https://www.hackerrank.com/challenges/an-interesting-game-1/problem
+        static String GamingArray(List<int> arr)
+        {   
+            int turn = 0;
+
+            for (int i = 0; i < arr.Count; i++)
+            {
+                int index = FindMaxElementIndex(ref arr);
+                RemoveMaxAndElemAfterMax(ref arr, index);
+                turn++;
+            }
+            
+            if (turn % 2 == 1)
+            {
+                // odd number representing Bob's win
+                return "BOB";
+            }
+            else
+            {
+                return "ANDY";
+            }
+        }
+
+        static int FindMaxElementIndex(ref List<int> arr)
+        {
+            int max = arr[0];
+            int maxIndex = 0;
+            for (int i = 1; i < arr.Count; i++)
+            {
+                if (arr[i] > max)
+                {
+                    max = arr[i];
+                    maxIndex = i;
+                }
+            }
+
+            return maxIndex;
+        }
+
+        static void RemoveMaxAndElemAfterMax(ref List<int> arr, int index)
+        {
+            arr.RemoveRange(index, arr.Count - index);
+        }
+
+
+        public static void Main(string[] args)
         {
             int[,] matrix = new int[,] 
             { 
@@ -144,7 +278,7 @@ namespace Algos
             //int maxHourglass = MaxHourglass(matrix);
             //Console.WriteLine(maxHourglass);
 
-            int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            //int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7 };
 
             //int[] leftRotate = RotateLeft(arr, 3);
             //Console.WriteLine(leftRotate);
@@ -155,13 +289,26 @@ namespace Algos
             //int[] result = matchingStrings(new string[] { "def", "de", "fgh" }, new string[] { "de", "lmn", "fgh" });
             //Console.WriteLine(result);
 
-            long result = arrayManipulation(5, new int[][]
-                            {
-                                new int[] { 1, 2, 100 },
-                                new int[] { 2, 5, 200 },
-                                new int[] { 3, 4, 100 }
-                            });
+            //long result = arrayManipulation(5, new int[][]
+            //                {
+            //                    new int[] { 1, 2, 100 },
+            //                    new int[] { 2, 5, 200 },
+            //                    new int[] { 3, 4, 100 }
+            //                });
 
+            //int[][] flipMatrix = new int[][]
+            //{
+            //    new int[] { 112, 42, 83, 119},
+            //    new int[] { 56, 125, 56, 49},
+            //    new int[] { 15, 78, 101, 43},
+            //    new int[] { 62, 98, 114, 109},
+            //};
+
+            //var maxSum = FlippingMatrix(flipMatrix);
+            //Console.WriteLine(maxSum);
+
+            var winner = GamingArray(new List<int> { 5, 2, 6, 3, 4 });
+            Console.Write(winner);
 
             Console.ReadLine();
         }

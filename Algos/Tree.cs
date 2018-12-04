@@ -209,7 +209,7 @@ namespace Algos
             }
         }
 
-        public static void Main(string[] args)
+        public static void Main2(string[] args)
         {
             Node tree = CreateTree();
 
