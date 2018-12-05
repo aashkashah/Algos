@@ -43,15 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Array.cs" />
-    <Compile Include="Challenges.cs" />
-    <Compile Include="Graph.cs" />
-    <Compile Include="Hashmap.cs" />
-    <Compile Include="RecursionAndBacktracking.cs" />
-    <Compile Include="Search.cs" />
-    <Compile Include="StackAndQueue.cs" />
-    <Compile Include="StringManipulation.cs" />
-    <Compile Include="Tree.cs" />
+    <Compile Include="Array\ArrayChallenges.cs" />
+    <Compile Include="Diverse\Challenges.cs" />
+    <Compile Include="Graph\GraphChallenges.cs" />
+    <Compile Include="HashMap\HashmapChallenges.cs" />
+    <Compile Include="RecursionAndBacktracking\RecursionAndBacktrackingChallenges.cs" />
+    <Compile Include="Search\SearchChallenges.cs" />
+    <Compile Include="StackAndQueue\BalancedBrackets.cs" />
+    <Compile Include="StringManipulation\StringManipulationChallenges.cs" />
+    <Compile Include="SuperMain.cs" />
+    <Compile Include="Tree\TreeChallenges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

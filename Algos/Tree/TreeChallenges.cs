@@ -10,7 +10,7 @@ namespace Algos
         public Node right;
     }
 
-    public class Tree
+    public class TreeChallenges
     {
         /// checks if a tree is BST
         static bool checkBST(Node root) {

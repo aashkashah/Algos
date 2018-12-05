@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algos
 {
-    class StackAndQueue
+    public class BalancedBrackets
     {
-        static string AreBracketsBalanced(string s)
+        public static string AreBracketsBalanced(string s)
         {
             Stack<char> stack = new Stack<char>();
             char[] charStr = s.ToCharArray();
@@ -56,18 +53,7 @@ namespace Algos
             }
         }
 
-        static int MinimumMoves(string[][] grid, int startX, int startY, int goalX, int goalY)
-        {
-            // GetNextNeighbors
-
-            // bfs to find the min route
-
-
-
-            return int.MinValue;
-        }
-
-        public static void Main2(string[] args)
+        public void Main_Stack(string[] args)
         {
             string isBalanced = AreBracketsBalanced("[{}]");
             Console.WriteLine(isBalanced);

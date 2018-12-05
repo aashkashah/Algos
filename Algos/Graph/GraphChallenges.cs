@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Algos
 {
-    public static class Graph
+    public static class GraphChallenges
     {
         public static Dictionary<int, List<int>> graph;
 
@@ -200,11 +200,11 @@ namespace Algos
 
         public static void Main2(string[] args)
         {
-            Graph.AddVertex(1, new List<int>() { 2, 3, 7 });
-            Graph.AddVertex(2, new List<int>() { 4, 5 });
-            Graph.AddVertex(4, new List<int>() { 3 });
-            Graph.AddVertex(5, new List<int>() { 3, 8 });
-            Graph.AddVertex(8, new List<int>() { 10, 11 });
+            GraphChallenges.AddVertex(1, new List<int>() { 2, 3, 7 });
+            GraphChallenges.AddVertex(2, new List<int>() { 4, 5 });
+            GraphChallenges.AddVertex(4, new List<int>() { 3 });
+            GraphChallenges.AddVertex(5, new List<int>() { 3, 8 });
+            GraphChallenges.AddVertex(8, new List<int>() { 10, 11 });
 
 
             // shortest path between two cities

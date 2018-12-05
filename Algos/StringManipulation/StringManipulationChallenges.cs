@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algos
 {
-    class StringManipulation
+    class StringManipulationChallenges
     {
         public static int MakeAnagram(string a, string b)
         {

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Algos
 {
-    class Array
+    class ArrayChallenges
     {
         static int[] RotateLeft(int[] arr, int d)
         {
@@ -263,7 +263,7 @@ namespace Algos
         }
 
 
-        public static void Main(string[] args)
+        public static void Main2(string[] args)
         {
             int[,] matrix = new int[,] 
             { 

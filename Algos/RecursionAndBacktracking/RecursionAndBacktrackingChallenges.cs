@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Algos
 {
-    class RecursionAndBacktracking
+    class RecursionAndBacktrackingChallenges
     {
         static int totalStepPerms = 0;
 

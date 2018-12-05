@@ -8,7 +8,7 @@ namespace Algos
 {
     // Java has HashMap, TreeMap, LinkedHashMap
     // Java's HashMap = C#'s Dictionary
-    class Hashmap
+    class HashmapChallenges
     {
         // available types :
         // HashSet<string> hash = new HashSet<string>();

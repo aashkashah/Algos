@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algos
 {
-    class Search
+    class SearchChallenges
     {
         static long minTime(long[] machines, long goal)
         {
