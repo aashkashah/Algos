@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algos
 {
-    class StackAndQueue
+    public class BalancedBrackets
     {
-        static string AreBracketsBalanced(string s)
+        public static string AreBracketsBalanced(string s)
         {
             Stack<char> stack = new Stack<char>();
             char[] charStr = s.ToCharArray();
@@ -132,8 +129,8 @@ namespace Algos
 			Console.WriteLine(firstElem);
 		}
 
-		public static void Main(string[] args)
-        {
+		public void Main_Stack(string[] args)
+		{
             //string isBalanced = AreBracketsBalanced("[{}]");
             //Console.WriteLine(isBalanced);
 
