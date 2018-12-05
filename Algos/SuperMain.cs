@@ -11,9 +11,7 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            BalancedBrackets bb = new BalancedBrackets();
-            bb.Main_Stack(args);
-
+           
             Console.ReadLine();
         }
     }
