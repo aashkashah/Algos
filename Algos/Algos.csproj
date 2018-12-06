@@ -44,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array\ArrayChallenges.cs" />
+    <Compile Include="BitManipulation\XOR.cs" />
     <Compile Include="Diverse\Challenges.cs" />
     <Compile Include="Graph\GraphChallenges.cs" />
     <Compile Include="HashMap\HashmapChallenges.cs" />
+    <Compile Include="RecursionAndBacktracking\Crossword.cs" />
     <Compile Include="RecursionAndBacktracking\RecursionAndBacktrackingChallenges.cs" />
     <Compile Include="Search\SearchChallenges.cs" />
     <Compile Include="StackAndQueue\BalancedBrackets.cs" />

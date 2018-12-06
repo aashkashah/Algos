@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Algos
 {
-    class ArrayChallenges
+    public class ArrayChallenges
     {
         static int[] RotateLeft(int[] arr, int d)
         {
@@ -262,8 +262,7 @@ namespace Algos
             arr.RemoveRange(index, arr.Count - index);
         }
 
-
-        public static void Main2(string[] args)
+		public void Main_Array(string[] args)
         {
             int[,] matrix = new int[,] 
             { 
@@ -275,41 +274,41 @@ namespace Algos
                 { 0,  0,  1,  2, 4, 0 }
             };
 
-            //int maxHourglass = MaxHourglass(matrix);
-            //Console.WriteLine(maxHourglass);
+			//int maxHourglass = MaxHourglass(matrix);
+			//Console.WriteLine(maxHourglass);
 
-            //int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+			//int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7 };
 
-            //int[] leftRotate = RotateLeft(arr, 3);
-            //Console.WriteLine(leftRotate);
+			//int[] leftRotate = RotateLeft(arr, 3);
+			//Console.WriteLine(leftRotate);
 
-            //int[] queue = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
-            //minimumBribes(queue);
+			//int[] queue = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
+			//minimumBribes(queue);
 
-            //int[] result = matchingStrings(new string[] { "def", "de", "fgh" }, new string[] { "de", "lmn", "fgh" });
-            //Console.WriteLine(result);
+			//int[] result = matchingStrings(new string[] { "def", "de", "fgh" }, new string[] { "de", "lmn", "fgh" });
+			//Console.WriteLine(result);
 
-            //long result = arrayManipulation(5, new int[][]
-            //                {
-            //                    new int[] { 1, 2, 100 },
-            //                    new int[] { 2, 5, 200 },
-            //                    new int[] { 3, 4, 100 }
-            //                });
+			//long result = arrayManipulation(5, new int[][]
+			//                {
+			//                    new int[] { 1, 2, 100 },
+			//                    new int[] { 2, 5, 200 },
+			//                    new int[] { 3, 4, 100 }
+			//                });
 
-            //int[][] flipMatrix = new int[][]
-            //{
-            //    new int[] { 112, 42, 83, 119},
-            //    new int[] { 56, 125, 56, 49},
-            //    new int[] { 15, 78, 101, 43},
-            //    new int[] { 62, 98, 114, 109},
-            //};
+			//int[][] flipMatrix = new int[][]
+			//{
+			//    new int[] { 112, 42, 83, 119},
+			//    new int[] { 56, 125, 56, 49},
+			//    new int[] { 15, 78, 101, 43},
+			//    new int[] { 62, 98, 114, 109},
+			//};
 
-            //var maxSum = FlippingMatrix(flipMatrix);
-            //Console.WriteLine(maxSum);
+			//var maxSum = FlippingMatrix(flipMatrix);
+			//Console.WriteLine(maxSum);
 
-            var winner = GamingArray(new List<int> { 5, 2, 6, 3, 4 });
-            Console.Write(winner);
-
+			//var winner = GamingArray(new List<int> { 5, 2, 6, 3, 4 });
+			//Console.Write(winner);
+			
             Console.ReadLine();
         }
     }

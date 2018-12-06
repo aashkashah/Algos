@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algos
 {
@@ -10,8 +6,10 @@ namespace Algos
     {
         public static void Main(string[] args)
         {
-            // use this method to initiate sub programs 
-           
+			// use this method to initiate sub programs 
+			XOR xor = new XOR();
+			xor.Main_Bit(args);
+
             Console.ReadLine();
         }
     }
