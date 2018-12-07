@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Node = Algos.Tree.Node;
 
 namespace Algos
 {
-    class Node {
-        public int data;
-        public Node left;
-        public Node right;
-    }
-
     public class TreeChallenges
     {
         /// checks if a tree is BST
@@ -209,9 +204,133 @@ namespace Algos
             }
         }
 
-        public static void Main2(string[] args)
+        /// Find sum of all leaf nodes at the level nearest to root 
+        /// https://www.geeksforgeeks.org/sum-leaf-nodes-minimum-level/
+        static int SumOfLeafNodeAtMinLevel(Node root)
         {
-            Node tree = CreateTree();
+            int minLevel = FindMinLevel(root);
+            Queue<Node> queue = new Queue<Node>();
+            
+            root.level = 0;
+            queue.Enqueue(root);
+
+            int sum = 0;
+
+            while(queue.Count > 0)
+            {
+                Node node = queue.Dequeue();
+
+                if (node.level < minLevel)
+                {
+                    if (node.left != null)
+                    {
+                        node.left.level = node.level + 1;
+                        queue.Enqueue(node.left);
+                    }
+                    if (node.right != null)
+                    {
+                        node.right.level = node.level + 1;
+                        queue.Enqueue(node.right);
+                    }
+                }
+                else if (node.level == minLevel)
+                {
+                    if(node.left == null && node.right == null)
+                    {
+                        sum += node.data;
+                    }
+                }
+            }
+
+            return sum;
+        }
+        
+        /// Sum of leaf nodes helper to find the minimum level 
+        static int FindMinLevel(Node root)
+        {
+            Queue<Node> queue = new Queue<Node>();
+            root.level = 0;
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                Node node = queue.Dequeue();
+
+                if (node.left == null && node.right == null)
+                {
+                    return node.level;
+                }
+
+                if (node.left != null)
+                {
+                    node.left.level = node.level + 1;
+                    queue.Enqueue(node.left);
+                }
+                if (node.right != null)
+                {
+                    node.right.level = node.level + 1;
+                    queue.Enqueue(node.right);
+                }
+            }
+
+            return 0;
+        }
+
+
+        /// Given 2 nodes, find the distance between them
+        ///  https://www.geeksforgeeks.org/find-distance-between-two-nodes-of-a-binary-tree/
+        static int FindDistanceBetweenTwoNodes(Node root, int firstNode, int secondNode)
+        {
+            Queue<Node> firstNodePath = FindPathNonBST(root, firstNode, new Queue<Node>());
+            Queue<Node> secondNodePath = FindPathNonBST(root, secondNode, new Queue<Node>());
+
+            while (firstNodePath.Count > 0 && secondNodePath.Count > 0)
+            {
+                if (firstNodePath.Peek().data != secondNodePath.Peek().data)
+                {
+                    // lca hit
+                    break;
+                }
+                firstNodePath.Dequeue();
+                secondNodePath.Dequeue();
+            }
+
+            int distance = 0;
+
+            while (firstNodePath.Count > 0)
+            {
+                distance++;
+                firstNodePath.Dequeue();
+            }
+            while (secondNodePath.Count > 0)
+            {
+                distance++;
+                secondNodePath.Dequeue();
+            }
+            
+            return distance;
+        }
+
+        static Queue<Node> FindPathNonBST(Node root, int key, Queue<Node> path)
+        {
+            path.Enqueue(root);
+
+            if (root.data == key)
+            {
+                return path;
+            }
+            else
+            {
+                FindPathNonBST(root.left, key, path);
+                FindPathNonBST(root.right, key, path);
+            }
+
+            return null;
+        }
+        
+        public void Main_Tree(string[] args)
+        {
+            Node tree = Tree.CreateTree();
 
             //bool result = checkBST(tree);
 
@@ -224,57 +343,8 @@ namespace Algos
 
             //Node root = InsertIntoBST(tree, 8);
 
-
-
-            Console.ReadLine();
-        }
-
-        static Node CreateTree()
-        {
-            // create tree
-            //          10
-            //    5            15
-            // 2     7      12     18
-            //          9      14
-
-            Node tree = new Node()
-            {
-                data = 10,
-                left = new Node()
-                {
-                    data = 5,
-                    left = new Node()
-                    {
-                        data = 2
-                    },
-                    right = new Node()
-                    {
-                        data = 7,
-                        right = new Node()
-                        {
-                            data = 9
-                        }
-                    }
-                },
-                right = new Node()
-                {
-                    data = 15,
-                    left = new Node()
-                    {
-                        data = 12,
-                        right = new Node()
-                        {
-                            data = 14
-                        }
-                    },
-                    right = new Node()
-                    {
-                        data = 18
-                    }
-                }
-            };
-
-            return tree;
+            var sum = SumOfLeafNodeAtMinLevel(tree);
+            Console.WriteLine(sum);
         }
     }
 }

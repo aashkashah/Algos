@@ -6,9 +6,9 @@ namespace Algos
     {
         public static void Main(string[] args)
         {
-			// use this method to initiate sub programs 
-			XOR xor = new XOR();
-			xor.Main_Bit(args);
+            // use this method to initiate sub programs 
+            TreeChallenges t = new TreeChallenges();
+            t.Main_Tree(args);
 
             Console.ReadLine();
         }

@@ -56,6 +56,8 @@
     <Compile Include="StackAndQueue\TextEditor.cs" />
     <Compile Include="StringManipulation\StringManipulationChallenges.cs" />
     <Compile Include="SuperMain.cs" />
+    <Compile Include="Tree\Traversal.cs" />
+    <Compile Include="Tree\Tree.cs" />
     <Compile Include="Tree\TreeChallenges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
