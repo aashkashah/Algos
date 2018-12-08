@@ -6,11 +6,11 @@ namespace Algos
     {
         public static void Main(string[] args)
         {
-            // use this method to initiate sub programs 
-            TreeChallenges t = new TreeChallenges();
-            t.Main_Tree(args);
+			// use this method to initiate sub programs 
+			Test t = new Test();
+			t.Main(args);
 
-            Console.ReadLine();
+			Console.ReadLine();
         }
     }
 }
