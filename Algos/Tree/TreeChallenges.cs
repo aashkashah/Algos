@@ -327,6 +327,73 @@ namespace Algos
 
             return null;
         }
+
+        /// Finds the height/depth of a binary tree 
+        static int HeightOfBinaryTree(Node root)
+        {
+            return FindHeightHelper(root);
+        }
+
+        /// Binary tree height/depth helper 
+        static int FindHeightHelper(Node node)
+        {
+            // base case
+            if (node == null)
+            {
+                return 0;
+            }
+            else
+            {
+                // Find max of left or right height
+                return Math.Max(FindHeightHelper(node.left) + 1, FindHeightHelper(node.right) + 1);
+            }
+        }
+
+
+        /// Print out all root to leaf path per line of a binary tree
+        /// https://www.geeksforgeeks.org/given-a-binary-tree-print-out-all-of-its-root-to-leaf-paths-one-per-line/
+        static void PrintRootToLeafPath(Node root)
+        {
+            PrintRootToLeafHelper(root, new List<Node>() { root });
+        }
+
+        static void PrintRootToLeafHelper(Node node, List<Node> path)
+        {
+            if (node.left == null && node.right == null)
+            {
+                // print path
+                foreach (Node n in path)
+                {
+                    Console.Write(n.data + " ");
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                if (node.left != null)
+                {
+                    path.Add(node.left);
+                    PrintRootToLeafHelper(node.left, path);
+                    path.Remove(node.left);
+                }
+
+                if (node.right != null)
+                {
+                    path.Add(node.right);
+                    PrintRootToLeafHelper(node.right, path);
+                    path.Remove(node.right);
+                }
+            }
+        }
+
+        /// Convert binary tree to a doubly linked list
+        /// https://www.geeksforgeeks.org/convert-a-binary-tree-to-a-circular-doubly-link-list/
+        static Node ConvertBTreeToDoublyLList(Node root)
+        {
+
+        }
+
+
         
         public void Main_Tree(string[] args)
         {
@@ -343,8 +410,14 @@ namespace Algos
 
             //Node root = InsertIntoBST(tree, 8);
 
-            var sum = SumOfLeafNodeAtMinLevel(tree);
-            Console.WriteLine(sum);
+            //var sum = SumOfLeafNodeAtMinLevel(tree);
+            //Console.WriteLine(sum);
+
+            //var height = HeightOfBinaryTree(tree);
+            //Console.WriteLine(height);
+
+            PrintRootToLeafPath(tree);
+
         }
     }
 }
