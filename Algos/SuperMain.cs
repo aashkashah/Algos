@@ -6,9 +6,9 @@ namespace Algos
     {
         public static void Main(string[] args)
         {
-			// use this method to initiate sub programs 
-			Test t = new Test();
-			t.Main(args);
+            // use this method to initiate sub programs 
+            SlidingWindow sw = new SlidingWindow();
+            sw.Main(args);
 
 			Console.ReadLine();
         }

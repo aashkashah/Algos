@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array\ArrayChallenges.cs" />
+    <Compile Include="Array\SlidingWindow.cs" />
     <Compile Include="BitManipulation\XOR.cs" />
     <Compile Include="Diverse\Challenges.cs" />
     <Compile Include="Diverse\Test.cs" />

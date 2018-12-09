@@ -390,10 +390,34 @@ namespace Algos
         /// https://www.geeksforgeeks.org/convert-a-binary-tree-to-a-circular-doubly-link-list/
         static Node ConvertBTreeToDoublyLList(Node root)
         {
-
+            return null;
         }
 
+        static Node ConvertTreeToList(Node root)
+        {
+            if (root == null)
+                return null;
 
+            Node left = ConvertTreeToList(root.left);
+            Node right = ConvertTreeToList(root.right);
+
+            root.left = root.right = root;
+            return null;
+        }
+
+        static Node Concatenate(Node leftList, Node rightList)
+        {
+            Node leftLast = leftList.left;
+            Node rightLast = rightList.left;
+
+            leftLast.right = rightList;
+            rightLast.left = leftLast;
+
+            leftList.left = rightList;
+
+            return null;
+
+        }
         
         public void Main_Tree(string[] args)
         {
