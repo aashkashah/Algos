@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Coordinate = Algos.Matrix.Coordinate;
 
 namespace Algos
 {
     public class ShortestPath
     {
-        struct Coordinate
-        {
-            public int X;
-            public int Y;
-        }
-
         static int ShortestPathInMaze(int[,] maze, Coordinate start, Coordinate end)
         {
             Queue<Coordinate> queue = new Queue<Coordinate>();

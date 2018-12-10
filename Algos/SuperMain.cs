@@ -6,9 +6,9 @@ namespace Algos
     {
         public static void Main(string[] args)
         {
-            // use this method to initiate sub programs 
-            ShortestPath sp = new ShortestPath();
-            sp.Main();
+			// use this method to initiate sub programs 
+			ChessBoard cb = new ChessBoard();
+			cb.Main_Chess();
 
 			Console.ReadLine();
         }

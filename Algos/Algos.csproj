@@ -51,6 +51,8 @@
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\GraphChallenges.cs" />
     <Compile Include="HashMap\HashmapChallenges.cs" />
+    <Compile Include="Matrix\ChessBoard.cs" />
+    <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Matrix\ShortestPath.cs" />
     <Compile Include="RecursionAndBacktracking\Crossword.cs" />
     <Compile Include="RecursionAndBacktracking\RecursionAndBacktrackingChallenges.cs" />
