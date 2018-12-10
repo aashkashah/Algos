@@ -7,8 +7,8 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            SlidingWindow sw = new SlidingWindow();
-            sw.Main(args);
+            ShortestPath sp = new ShortestPath();
+            sp.Main();
 
 			Console.ReadLine();
         }

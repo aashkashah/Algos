@@ -48,8 +48,10 @@
     <Compile Include="BitManipulation\XOR.cs" />
     <Compile Include="Diverse\Challenges.cs" />
     <Compile Include="Diverse\Test.cs" />
+    <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\GraphChallenges.cs" />
     <Compile Include="HashMap\HashmapChallenges.cs" />
+    <Compile Include="Matrix\ShortestPath.cs" />
     <Compile Include="RecursionAndBacktracking\Crossword.cs" />
     <Compile Include="RecursionAndBacktracking\RecursionAndBacktrackingChallenges.cs" />
     <Compile Include="Search\SearchChallenges.cs" />

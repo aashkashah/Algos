@@ -257,10 +257,54 @@ namespace Algos
                     }
                 }
             }
-
+           
         }
 
-        public static void Main2(string[] args)
+        static void SumOfSubsets(int[] arr)
+        {
+            List<int> arrList = new List<int>();
+            arrList.AddRange(arr);
+
+            SubsetsHelper(arrList, new List<int>());
+        }
+        
+        static void SubsetsHelper(List<int> arr, List<int> chosen)
+        {
+            // base case
+            if (arr.Count == 0)
+            {
+                // print sum
+                for (int i = 0; i < chosen.Count; i++)
+                {
+                    Console.Write(chosen[i] + " ");
+                }
+                Console.WriteLine();
+            }
+            // recursive case
+            else
+            {
+                for (int i = 0; i < arr.Count; i++)
+                {
+                    // choose
+                    int elem = arr[i];
+                    arr.Remove(elem);
+                    
+                    // explore with
+                    chosen.Add(elem);
+                    SubsetsHelper(arr, chosen);
+
+                    // explore without
+                    chosen.Remove(elem);
+                    SubsetsHelper(arr, chosen);
+
+                    // un-choose
+                    arr.Add(elem);
+                }
+
+            }
+        }
+
+        public void Main_RnB(string[] args)
         {
             //int fib = Fibonacci(6);
             //Console.WriteLine(fib);
@@ -281,6 +325,8 @@ namespace Algos
             //Sublists(list);
 
             //DiceRoll(3);
+            
+            SumOfSubsets(new int[] { 2, 4, 5 });
 
             Console.ReadLine();
 
