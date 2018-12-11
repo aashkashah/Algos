@@ -386,61 +386,93 @@ namespace Algos
             }
         }
 
-        /// Convert binary tree to a doubly linked list
-        /// https://www.geeksforgeeks.org/convert-a-binary-tree-to-a-circular-doubly-link-list/
-        static Node ConvertBTreeToDoublyLList(Node root)
-        {
-            return null;
+		/// Convert binary tree to a doubly linked list
+		/// https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
+		static Node BinaryTreeToDoublyList(Node node)
+		{
+			if (node == null)
+			{
+				return node;
+			}
+
+			node = BinaryTreeToDoublyListHelper(node);
+
+			while(node.left != null)
+			{
+				node = node.left;
+			}
+
+            return node;
         }
 
-        static Node ConvertTreeToList(Node root)
-        {
-            if (root == null)
-                return null;
+		static Node BinaryTreeToDoublyListHelper(Node node)
+		{
+			// base case
+			if (node == null)
+			{
+				return node;
+			}
 
-            Node left = ConvertTreeToList(root.left);
-            Node right = ConvertTreeToList(root.right);
+			if (node.left != null)
+			{
+				// convert left sub tree
+				Node left = BinaryTreeToDoublyListHelper(node.left);
 
-            root.left = root.right = root;
-            return null;
-        }
+				// find in order predecessor
+				while (left.right != null)
+				{
+					left = left.right;
+				}
 
-        static Node Concatenate(Node leftList, Node rightList)
-        {
-            Node leftLast = leftList.left;
-            Node rightLast = rightList.left;
+				// point predessor's next to root and root's previous to predessor
+				left.right = node;
+				node.left = left;
+			}
 
-            leftLast.right = rightList;
-            rightLast.left = leftLast;
+			if (node.right != null)
+			{
+				// convert right sub tree
+				Node right = BinaryTreeToDoublyListHelper(node.right);
 
-            leftList.left = rightList;
+				// find inorder successor
+				while (right.left != null)
+				{
+					right = right.left;
+				}
 
-            return null;
+				// point predessor's previous to root and root's next to predessor
+				right.left = node;
+				node.right = right;
+			}
 
-        }
+			return node;
+		}
+       
         
         public void Main_Tree(string[] args)
         {
             Node tree = Tree.CreateTree();
 
-            //bool result = checkBST(tree);
+			//bool result = checkBST(tree);
 
-            //Node lowestCommonAncentor = lca(tree, 10, 14);
-            //Console.WriteLine(lowestCommonAncentor.data);
+			//Node lowestCommonAncentor = lca(tree, 10, 14);
+			//Console.WriteLine(lowestCommonAncentor.data);
 
-            //MirrorImageATree(tree);
+			//MirrorImageATree(tree);
 
-            //LevelOrder(tree);
+			//LevelOrder(tree);
 
-            //Node root = InsertIntoBST(tree, 8);
+			//Node root = InsertIntoBST(tree, 8);
 
-            //var sum = SumOfLeafNodeAtMinLevel(tree);
-            //Console.WriteLine(sum);
+			//var sum = SumOfLeafNodeAtMinLevel(tree);
+			//Console.WriteLine(sum);
 
-            //var height = HeightOfBinaryTree(tree);
-            //Console.WriteLine(height);
+			//var height = HeightOfBinaryTree(tree);
+			//Console.WriteLine(height);
 
-            PrintRootToLeafPath(tree);
+			//PrintRootToLeafPath(tree);
+
+			BinaryTreeToDoublyList(tree);
 
         }
     }
