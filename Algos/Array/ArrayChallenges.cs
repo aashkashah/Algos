@@ -262,7 +262,29 @@ namespace Algos
             arr.RemoveRange(index, arr.Count - index);
         }
 
-		public void Main_Array(string[] args)
+        /// Determine if there exists two integers whose sum equals n
+        /// https://practice.geeksforgeeks.org/problems/key-pair/0
+        static void KeyPair(int[] arr, int n)
+        {
+            HashSet<int> hash = new HashSet<int>();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (hash.Contains(arr[i]))
+                {
+                    Console.WriteLine("YES");
+                    return;
+                }
+                else
+                {
+                    hash.Add(n - arr[i]);
+                }
+            }
+
+            Console.WriteLine("NO");
+        }
+
+		public void Main_Array()
         {
             int[,] matrix = new int[,] 
             { 
@@ -274,41 +296,43 @@ namespace Algos
                 { 0,  0,  1,  2, 4, 0 }
             };
 
-			//int maxHourglass = MaxHourglass(matrix);
-			//Console.WriteLine(maxHourglass);
+            //int maxHourglass = MaxHourglass(matrix);
+            //Console.WriteLine(maxHourglass);
 
-			//int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            //int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7 };
 
-			//int[] leftRotate = RotateLeft(arr, 3);
-			//Console.WriteLine(leftRotate);
+            //int[] leftRotate = RotateLeft(arr, 3);
+            //Console.WriteLine(leftRotate);
 
-			//int[] queue = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
-			//minimumBribes(queue);
+            //int[] queue = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
+            //minimumBribes(queue);
 
-			//int[] result = matchingStrings(new string[] { "def", "de", "fgh" }, new string[] { "de", "lmn", "fgh" });
-			//Console.WriteLine(result);
+            //int[] result = matchingStrings(new string[] { "def", "de", "fgh" }, new string[] { "de", "lmn", "fgh" });
+            //Console.WriteLine(result);
 
-			//long result = arrayManipulation(5, new int[][]
-			//                {
-			//                    new int[] { 1, 2, 100 },
-			//                    new int[] { 2, 5, 200 },
-			//                    new int[] { 3, 4, 100 }
-			//                });
+            //long result = arrayManipulation(5, new int[][]
+            //                {
+            //                    new int[] { 1, 2, 100 },
+            //                    new int[] { 2, 5, 200 },
+            //                    new int[] { 3, 4, 100 }
+            //                });
 
-			//int[][] flipMatrix = new int[][]
-			//{
-			//    new int[] { 112, 42, 83, 119},
-			//    new int[] { 56, 125, 56, 49},
-			//    new int[] { 15, 78, 101, 43},
-			//    new int[] { 62, 98, 114, 109},
-			//};
+            //int[][] flipMatrix = new int[][]
+            //{
+            //    new int[] { 112, 42, 83, 119},
+            //    new int[] { 56, 125, 56, 49},
+            //    new int[] { 15, 78, 101, 43},
+            //    new int[] { 62, 98, 114, 109},
+            //};
 
-			//var maxSum = FlippingMatrix(flipMatrix);
-			//Console.WriteLine(maxSum);
+            //var maxSum = FlippingMatrix(flipMatrix);
+            //Console.WriteLine(maxSum);
 
-			//var winner = GamingArray(new List<int> { 5, 2, 6, 3, 4 });
-			//Console.Write(winner);
-			
+            //var winner = GamingArray(new List<int> { 5, 2, 6, 3, 4 });
+            //Console.Write(winner);
+
+            //KeyPair(new int[] { 1, 4, 45, 6, 11, 8 }, 16);
+
             Console.ReadLine();
         }
     }

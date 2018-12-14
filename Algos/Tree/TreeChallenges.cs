@@ -40,7 +40,7 @@ namespace Algos
             result = checkBSTHelper(node.left, min, node.data);
             result = result && checkBSTHelper(node.right, node.data, max);
             return result;
-            
+
         }
 
         static bool checkBSTHelper2(Node node, int min, int max)
@@ -62,7 +62,7 @@ namespace Algos
 
         /// Find the lowest common ancestor of two nodes in a tree
         static Node lca(Node root, int v1, int v2)
-        {   
+        {
             Queue<Node> v1Path = new Queue<Node>();
             Queue<Node> v2Path = new Queue<Node>();
 
@@ -91,7 +91,7 @@ namespace Algos
             path.Enqueue(root);
 
             if (root.data == key)
-            {   
+            {
                 return path;
             }
             else
@@ -151,7 +151,7 @@ namespace Algos
             Queue<Node> queue = new Queue<Node>();
             queue.Enqueue(root);
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 Node node = queue.Dequeue();
                 Console.WriteLine(node.data);
@@ -165,7 +165,7 @@ namespace Algos
                     queue.Enqueue(node.right);
                 }
             }
-            
+
         }
 
         /// Insert given value into a BST and return pointer to the root
@@ -210,13 +210,13 @@ namespace Algos
         {
             int minLevel = FindMinLevel(root);
             Queue<Node> queue = new Queue<Node>();
-            
+
             root.level = 0;
             queue.Enqueue(root);
 
             int sum = 0;
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 Node node = queue.Dequeue();
 
@@ -235,7 +235,7 @@ namespace Algos
                 }
                 else if (node.level == minLevel)
                 {
-                    if(node.left == null && node.right == null)
+                    if (node.left == null && node.right == null)
                     {
                         sum += node.data;
                     }
@@ -244,7 +244,7 @@ namespace Algos
 
             return sum;
         }
-        
+
         /// Sum of leaf nodes helper to find the minimum level 
         static int FindMinLevel(Node root)
         {
@@ -307,7 +307,7 @@ namespace Algos
                 distance++;
                 secondNodePath.Dequeue();
             }
-            
+
             return distance;
         }
 
@@ -386,68 +386,67 @@ namespace Algos
             }
         }
 
-		/// Convert binary tree to a doubly linked list
-		/// https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
-		static Node BinaryTreeToDoublyList(Node node)
-		{
-			if (node == null)
-			{
-				return node;
-			}
+        /// Convert binary tree to a doubly linked list
+        /// https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
+        static Node BinaryTreeToDoublyList(Node node)
+        {
+            if (node == null)
+            {
+                return node;
+            }
 
-			node = BinaryTreeToDoublyListHelper(node);
+            node = BinaryTreeToDoublyListHelper(node);
 
-			while(node.left != null)
-			{
-				node = node.left;
-			}
+            while (node.left != null)
+            {
+                node = node.left;
+            }
 
             return node;
         }
 
-		static Node BinaryTreeToDoublyListHelper(Node node)
-		{
-			// base case
-			if (node == null)
-			{
-				return node;
-			}
+        static Node BinaryTreeToDoublyListHelper(Node node)
+        {
+            // base case
+            if (node == null)
+            {
+                return node;
+            }
 
-			if (node.left != null)
-			{
-				// convert left sub tree
-				Node left = BinaryTreeToDoublyListHelper(node.left);
+            if (node.left != null)
+            {
+                // convert left sub tree
+                Node left = BinaryTreeToDoublyListHelper(node.left);
 
-				// find in order predecessor
-				while (left.right != null)
-				{
-					left = left.right;
-				}
+                // find in order predecessor
+                while (left.right != null)
+                {
+                    left = left.right;
+                }
 
-				// point predessor's next to root and root's previous to predessor
-				left.right = node;
-				node.left = left;
-			}
+                // point predessor's next to root and root's previous to predessor
+                left.right = node;
+                node.left = left;
+            }
 
-			if (node.right != null)
-			{
-				// convert right sub tree
-				Node right = BinaryTreeToDoublyListHelper(node.right);
+            if (node.right != null)
+            {
+                // convert right sub tree
+                Node right = BinaryTreeToDoublyListHelper(node.right);
 
-				// find inorder successor
-				while (right.left != null)
-				{
-					right = right.left;
-				}
+                // find inorder successor
+                while (right.left != null)
+                {
+                    right = right.left;
+                }
 
-				// point predessor's previous to root and root's next to predessor
-				right.left = node;
-				node.right = right;
-			}
+                // point predessor's previous to root and root's next to predessor
+                right.left = node;
+                node.right = right;
+            }
 
-			return node;
-		}
-       
+            return node;
+        }
         
         public void Main_Tree(string[] args)
         {

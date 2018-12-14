@@ -6,9 +6,9 @@ namespace Algos
     {
         public static void Main(string[] args)
         {
-			// use this method to initiate sub programs 
-			ChessBoard cb = new ChessBoard();
-			cb.Main_Chess();
+            // use this method to initiate sub programs 
+            MergeLists ml = new MergeLists();
+            ml.Main_Stack();
 
 			Console.ReadLine();
         }

@@ -94,11 +94,112 @@ namespace Algos
 			}
 		}
 
-        public void Main_Tree(string[] args)
+        /// Finds the maximum path sum across the tree 
+        static int MaxPathSum(Node root)
+        {
+            int[] max = new int[1];
+            max[0] = int.MinValue;
+            MaxPathSumHelper(root, max);
+
+            return max[0];
+        }
+
+        static int MaxPathSumHelper(Node root, int[] max)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            int left = MaxPathSumHelper(root.left, max);
+            int right = MaxPathSumHelper(root.right, max);
+
+            int current = Math.Max(root.data, Math.Max(root.data + left, root.data + right));
+
+            max[0] = Math.Max(max[0], Math.Max(current, left + root.data + right));
+
+            return current;
+        }
+
+        /// Print left view of a binary tree
+        /// https://www.geeksforgeeks.org/print-left-view-binary-tree/
+        static void PrintLeftView(Node root)
+        {
+            Queue<Node> queue = new Queue<Node>();
+
+            root.level = 0;
+            queue.Enqueue(root);
+            Console.Write(root.data + " ");
+
+            int previousLevel = 0;
+
+            while (queue.Count > 0)
+            {
+                Node node = queue.Dequeue();
+
+                if (node.level > previousLevel)
+                {
+                    Console.Write(node.data + " ");
+                    previousLevel = node.level;
+                }
+
+                if(node.left != null)
+                {
+                    node.left.level = node.level + 1;
+                    queue.Enqueue(node.left);
+                }
+                if (node.right != null)
+                {
+                    node.right.level = node.level + 1;
+                    queue.Enqueue(node.right);
+                }
+            }
+
+        }
+
+        /// Check if binary tree is skewed
+        /// Skewed binary tree: If each node has only one child or none
+        static bool IsBinaryTreeSkewed(Node root)
+        {
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                Node node = queue.Dequeue();
+
+                if (node.left != null && node.right != null)
+                {
+                    return false;
+                }
+
+                if (node.left != null)
+                {
+                    queue.Enqueue(node.left);
+                }
+
+                if (node.right != null)
+                {
+                    queue.Enqueue(node.right);
+                }
+            }
+
+            return true;
+        }
+
+        public void Main_Tree()
 		{
 			Node tree = Tree.CreateTree();
 
-			LevelOrderSpiralTraversal(tree);
+            //LevelOrderSpiralTraversal(tree);
+
+            //int maxPathSum = MaxPathSum(tree);
+
+            // PrintLeftView(tree);
+
+            //bool isTreeSkewed = IsBinaryTreeSkewed(tree);
+            //Console.WriteLine(isTreeSkewed);
+            
         }
     }
 }

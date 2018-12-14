@@ -58,6 +58,7 @@
     <Compile Include="RecursionAndBacktracking\RecursionAndBacktrackingChallenges.cs" />
     <Compile Include="Search\SearchChallenges.cs" />
     <Compile Include="StackAndQueue\BalancedBrackets.cs" />
+    <Compile Include="StackAndQueue\MergeLists.cs" />
     <Compile Include="StackAndQueue\QueueUsingTwoStacks.cs" />
     <Compile Include="StackAndQueue\TextEditor.cs" />
     <Compile Include="StringManipulation\StringManipulationChallenges.cs" />
