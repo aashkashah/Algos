@@ -7,8 +7,8 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            MergeLists ml = new MergeLists();
-            ml.Main_Stack();
+            LongestCommon lc = new LongestCommon();
+            lc.Main();
 
 			Console.ReadLine();
         }

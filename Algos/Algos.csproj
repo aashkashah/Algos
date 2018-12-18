@@ -48,14 +48,15 @@
     <Compile Include="BitManipulation\XOR.cs" />
     <Compile Include="Diverse\Challenges.cs" />
     <Compile Include="Diverse\Test.cs" />
+    <Compile Include="DynamicProgramming\Knapsack.cs" />
+    <Compile Include="DynamicProgramming\LongestCommon.cs" />
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\GraphChallenges.cs" />
     <Compile Include="HashMap\HashmapChallenges.cs" />
     <Compile Include="Matrix\ChessBoard.cs" />
     <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Matrix\ShortestPath.cs" />
-    <Compile Include="RecursionAndBacktracking\Crossword.cs" />
-    <Compile Include="RecursionAndBacktracking\RecursionAndBacktrackingChallenges.cs" />
+    <Compile Include="RecursionAndBacktracking\BacktrackingChallenges.cs" />
     <Compile Include="Search\SearchChallenges.cs" />
     <Compile Include="StackAndQueue\BalancedBrackets.cs" />
     <Compile Include="StackAndQueue\MergeLists.cs" />
@@ -71,6 +72,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
