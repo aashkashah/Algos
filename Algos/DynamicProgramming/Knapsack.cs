@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Algos
 {
     public class Knapsack
     {
-
-        ///  
         static int MaximizeProfit(int[] size, int[] value, int bag)
         {
             int minValue = value.Min();
@@ -17,12 +14,22 @@ namespace Algos
             {
                 for (int col = 0; col < grid.GetLength(1); col++)
                 {
-
+                    if (size[row] >= col)
+                    {
+                        if (row - 1 >= 0 && col - 1 >= 0)
+                        {
+                            grid[row, col] = Math.Max(grid[row - 1, col - 1], value[row] + grid[row - 1, col - size[row]]);
+                        }
+                        else
+                        {
+                            grid[row, col] = value[row];
+                        }
+                    }
                 }
             }
 
 
-            return int.MinValue;
+            return grid[grid.GetLength(0) - 1, grid.GetLength(1) - 1];
         }
 
         public void Main()

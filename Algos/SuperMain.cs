@@ -7,7 +7,7 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            LongestCommon lc = new LongestCommon();
+            ListChallenges lc = new ListChallenges();
             lc.Main();
 
 			Console.ReadLine();

@@ -53,6 +53,8 @@
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\GraphChallenges.cs" />
     <Compile Include="HashMap\HashmapChallenges.cs" />
+    <Compile Include="LinkedLists\ListChallenges.cs" />
+    <Compile Include="LinkedLists\LinkedList.cs" />
     <Compile Include="Matrix\ChessBoard.cs" />
     <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Matrix\ShortestPath.cs" />
