@@ -36,23 +36,24 @@ namespace Algos
                     {
                         // 1%
                         fishRemain = fishInfo[i].Count / 100;
-                        fishInfo[i].Count = fishRemain;
-                        yearlyFishCount += fishRemain; 
                     }
                     else if (fishInfo[i].Age >= 1 && fishInfo[i].Age < 3)
                     {
                         // 10%
                         fishRemain = fishInfo[i].Count / 10;
-                        fishInfo[i].Count = fishRemain;
-                        yearlyFishCount += fishRemain;
                     }
                     else if (fishInfo[i].Age >= 3 && fishInfo[i].Age < 100)
                     {
                         // 25%
                         fishRemain = fishInfo[i].Count / 4;
-                        fishInfo[i].Count = fishRemain;
-                        yearlyFishCount += fishRemain;
                     }
+                    else
+                    {
+                        continue;
+                    }
+
+                    fishInfo[i].Count = fishRemain;
+                    yearlyFishCount += fishRemain;
                 }
 
                 // count new born
