@@ -14,7 +14,7 @@ namespace Algos
 
         // calculates the number of fish that remain after a 5 year span
         // with pre req conditions
-        public static int FisherySimulator(List<FishInfo> fishInfo)
+        public static int FishMortalityCalculator(List<FishInfo> fishInfo)
         {
             // 4 base pre reqs
             // < 1 1% chance
@@ -24,9 +24,10 @@ namespace Algos
 
             // loop for 5 years
             int year = 1;
+            int yearlyFishCount = 0;
             while (year <= 5)
-            {
-                int fishCount = 0;
+            {   
+                yearlyFishCount = 0;
 
                 for (int i = 0; i < fishInfo.Count; i++)
                 {
@@ -36,42 +37,41 @@ namespace Algos
                         // 1%
                         fishRemain = fishInfo[i].Count / 100;
                         fishInfo[i].Count = fishRemain;
-                        fishCount += fishRemain; 
+                        yearlyFishCount += fishRemain; 
                     }
                     else if (fishInfo[i].Age >= 1 && fishInfo[i].Age < 3)
                     {
                         // 10%
-                        fishRemain += fishInfo[i].Count / 10;
+                        fishRemain = fishInfo[i].Count / 10;
                         fishInfo[i].Count = fishRemain;
-                        fishCount += fishRemain;
+                        yearlyFishCount += fishRemain;
                     }
                     else if (fishInfo[i].Age >= 3 && fishInfo[i].Age < 100)
                     {
                         // 25%
-                        fishRemain += fishInfo[i].Count / 4;
+                        fishRemain = fishInfo[i].Count / 4;
                         fishInfo[i].Count = fishRemain;
-                        fishCount += fishRemain;
+                        yearlyFishCount += fishRemain;
                     }
                 }
 
                 // count new born
                 int newBorns = CountNewBorn(fishInfo);
-                fishCount += newBorns;
+                yearlyFishCount += newBorns;
                 
-                // update new fish years
-                fishInfo = UpdateFishYearly(fishInfo, newBorns);
+                // increment fish year
+                fishInfo = IncrementFishYear(fishInfo);
+
+                 // add new born fish
+                fishInfo = AddNewBorn(fishInfo, newBorns);
 
                 // remove fish over or equal to 100
                 fishInfo = RemoveAgedFish(fishInfo);
 
                 year++;
-                if (year == 6)
-                {
-                    return fishCount;
-                }
             }
 
-            return 0;
+            return yearlyFishCount;
         }
         
         static int CountNewBorn(List<FishInfo> fishInfo)
@@ -83,14 +83,19 @@ namespace Algos
             return (fish / 2) * 200;
         }
 
-        static List<FishInfo> UpdateFishYearly(List<FishInfo> fishInfo, int newBorn)
+        static List<FishInfo> AddNewBorn(List<FishInfo> fishInfo, int newBorn)
         {
-            // increment present fish year
-            fishInfo.ForEach(x => x.Age++);
-
             // add newborn
             fishInfo.Add(new FishInfo { Age = 0, Count = newBorn });
 
+            return fishInfo;
+        }
+
+        static List<FishInfo> IncrementFishYear(List<FishInfo> fishInfo)
+        {
+            // increment present fish year
+            fishInfo.ForEach(x => x.Age++);
+            
             return fishInfo;
         }
 
@@ -153,7 +158,7 @@ namespace Algos
             return result;
         }
 
-        public static void Main2(string[] args)
+        public void Main()
         {
             int[,] arr = new int[,] 
             {
@@ -166,7 +171,7 @@ namespace Algos
                 { 7, 9 }
             };
 
-            var temp = ClosestXdestinations(6, arr, 3);
+            //var temp = ClosestXdestinations(6, arr, 3);
 
 
             List<FishInfo> fishInfo = new List<FishInfo>()
@@ -174,12 +179,12 @@ namespace Algos
                 new FishInfo()
                 {
                     Age = 0,
-                    Count = 200,
+                    Count = 2000,
                 },
                 new FishInfo()
                 {
                     Age = 1,
-                    Count = 180,
+                    Count = 1800,
                 },
                 new FishInfo()
                 {
@@ -189,12 +194,12 @@ namespace Algos
                 new FishInfo()
                 {
                     Age = 5,
-                    Count = 100,
+                    Count = 2500,
                 },
                 new FishInfo()
                 {
                     Age = 10,
-                    Count = 100,
+                    Count = 2000,
                 },
                 new FishInfo()
                 {
@@ -203,7 +208,7 @@ namespace Algos
                 }
             };
 
-            int totalFish = FisherySimulator(fishInfo);
+            int totalFish = FishMortalityCalculator(fishInfo);
             Console.WriteLine(totalFish);
         }
     }
