@@ -7,8 +7,8 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            ListChallenges lc = new ListChallenges();
-            lc.Main();
+            Challenges cl = new Challenges();
+            cl.Main();
 
 			Console.ReadLine();
         }

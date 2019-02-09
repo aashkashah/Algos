@@ -30,30 +30,18 @@ namespace Algos
                 yearlyFishCount = 0;
 
                 for (int i = 0; i < fishInfo.Count; i++)
-                {
-                    int fishRemain = 0;
-                    if (fishInfo[i].Age == 0)
-                    {
-                        // 1%
-                        fishRemain = fishInfo[i].Count / 100;
-                    }
-                    else if (fishInfo[i].Age >= 1 && fishInfo[i].Age < 3)
-                    {
-                        // 10%
-                        fishRemain = fishInfo[i].Count / 10;
-                    }
-                    else if (fishInfo[i].Age >= 3 && fishInfo[i].Age < 100)
-                    {
-                        // 25%
-                        fishRemain = fishInfo[i].Count / 4;
-                    }
-                    else
+                {   
+                    if (fishInfo[i].Age >= 100)
                     {
                         continue;
                     }
+                    else
+                    {
+                        int fishRemain = FindRemainingFish(fishInfo[i]);
 
-                    fishInfo[i].Count = fishRemain;
-                    yearlyFishCount += fishRemain;
+                        fishInfo[i].Count = fishRemain;
+                        yearlyFishCount += fishRemain;
+                    }
                 }
 
                 // count new born
@@ -61,7 +49,7 @@ namespace Algos
                 yearlyFishCount += newBorns;
                 
                 // increment fish year
-                fishInfo = IncrementFishYear(fishInfo);
+                fishInfo = IncrementFishAge(fishInfo);
 
                  // add new born fish
                 fishInfo = AddNewBorn(fishInfo, newBorns);
@@ -74,7 +62,43 @@ namespace Algos
 
             return yearlyFishCount;
         }
+
+        /// <summary>
+        // Finds remaining fish based on the mortality percentage 
+        // Fish age < 1, 1% chance of survival
+        // Fish age between 1-2, 10% chance of survival
+        // Fish age between 3-99, 25% chance of survival
+        /// </summary>
+        /// <param name="fishInfo">Fish age and count passed as FishInfo object</param>
+        /// <returns>Percentage of remaining fish in that age bracket</returns>
+        static int FindRemainingFish(FishInfo fishInfo)
+        {
+            int fishRemain = 0;
+
+            if (fishInfo.Age == 0)
+            {
+                // 1%
+                fishRemain = fishInfo.Count / 100;
+            }
+            else if (fishInfo.Age >= 1 && fishInfo.Age < 3)
+            {
+                // 10%
+                fishRemain = fishInfo.Count / 10;
+            }
+            else if (fishInfo.Age >= 3 && fishInfo.Age < 100)
+            {
+                // 25%
+                fishRemain = fishInfo.Count / 4;
+            }
+
+            return fishRemain;
+        }
         
+        /// <summary>
+        /// Counts the total number of new born in a year 
+        /// </summary>
+        /// <param name="fishInfo">List of fish Info (Age and Count) </param>
+        /// <returns>Returns total number of fish born in a year as an Integer</returns>
         static int CountNewBorn(List<FishInfo> fishInfo)
         {
             int fish = 0;
@@ -84,6 +108,12 @@ namespace Algos
             return (fish / 2) * 200;
         }
 
+        /// <summary>
+        /// Adds new born fish to the original list of fishInfo
+        /// </summary>
+        /// <param name="fishInfo">List of fish Info (Age and Count) </param>
+        /// <param name="newBorn">Number of new born fish</param>
+        /// <returns>Updated list with new born fish values</returns>
         static List<FishInfo> AddNewBorn(List<FishInfo> fishInfo, int newBorn)
         {
             // add newborn
@@ -92,7 +122,12 @@ namespace Algos
             return fishInfo;
         }
 
-        static List<FishInfo> IncrementFishYear(List<FishInfo> fishInfo)
+        /// <summary>
+        /// Increments the age of all fish in list provided
+        /// </summary>
+        /// <param name="fishInfo">List of fish Info (Age and Count) </param>
+        /// <returns>Updated list with fish age incremented</returns>
+        static List<FishInfo> IncrementFishAge(List<FishInfo> fishInfo)
         {
             // increment present fish year
             fishInfo.ForEach(x => x.Age++);
@@ -100,6 +135,11 @@ namespace Algos
             return fishInfo;
         }
 
+        /// <summary>
+        /// Removes fish from list with age equal or above 100
+        /// </summary>
+        /// <param name="fishInfo">List of fish Info (Age and Count) </param>
+        /// <returns>Updated list with fish equal or above 100 removed</returns>
         static List<FishInfo> RemoveAgedFish(List<FishInfo> fishInfo)
         {
             return fishInfo.Where(x => x.Age < 100).ToList();
