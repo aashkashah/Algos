@@ -48,6 +48,37 @@ namespace Algos
             Console.WriteLine(node.data);
         }
 
+        /// <summary>
+        /// Level order traversal. Also called a breadth first serach
+        /// </summary>
+        /// <param name="root"></param>
+        static void LevelOrderTraversal(Node root)
+        {
+            if (root == null)
+            {
+                return;
+            }
+
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+
+            while(queue.Count != 0)
+            {
+                Node tempNode = queue.Dequeue();
+                Console.WriteLine(tempNode.data);
+
+                if (tempNode.left != null)
+                {
+                    queue.Enqueue(tempNode.left);
+                }
+
+                if (tempNode.right != null)
+                {
+                    queue.Enqueue(tempNode.right);
+                }
+            }
+        }
+
 		static void LevelOrderSpiralTraversal(Node root)
 		{
 			if (root == null)
@@ -105,7 +136,7 @@ namespace Algos
         }
 
         static int MaxPathSumHelper(Node root, int[] max)
-        {
+        {   
             if (root == null)
             {
                 return 0;
@@ -127,11 +158,10 @@ namespace Algos
         {
             Queue<Node> queue = new Queue<Node>();
 
+            int previousLevel = -1;
+
             root.level = 0;
             queue.Enqueue(root);
-            Console.Write(root.data + " ");
-
-            int previousLevel = 0;
 
             while (queue.Count > 0)
             {
@@ -195,7 +225,7 @@ namespace Algos
 
             //int maxPathSum = MaxPathSum(tree);
 
-            // PrintLeftView(tree);
+             // PrintLeftView(tree);
 
             //bool isTreeSkewed = IsBinaryTreeSkewed(tree);
             //Console.WriteLine(isTreeSkewed);
