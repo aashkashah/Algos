@@ -47,7 +47,7 @@
     <Compile Include="Array\SlidingWindow.cs" />
     <Compile Include="BitManipulation\XOR.cs" />
     <Compile Include="Diverse\Challenges.cs" />
-    <Compile Include="Diverse\Test.cs" />
+    <Compile Include="Diverse\TraverseString.cs" />
     <Compile Include="DynamicProgramming\Knapsack.cs" />
     <Compile Include="DynamicProgramming\LongestCommon.cs" />
     <Compile Include="Graph\Graph.cs" />
