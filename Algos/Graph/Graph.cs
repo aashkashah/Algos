@@ -14,7 +14,7 @@ namespace Algos
         public static Dictionary<int, List<int>> graph;
         public Dictionary<int, List<int>> adjList;
         
-        /// Add an edge to a graph, provided source and dstination  
+        /// Add an edge to a graph, provided source and destination  
         public static void AddEdge(int source, int dest)
         {
             List<int> neighbors = graph[source];

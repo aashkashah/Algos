@@ -284,10 +284,147 @@ namespace Algos
             Console.WriteLine("NO");
         }
 
-		public void Main_Array()
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/727/
+        static int RemoveDuplicatesFromSortedArray(ref int[] num)
         {
-            int[,] matrix = new int[,] 
-            { 
+            if (num.Length == 0)
+                return 0;
+            int currVal = num[0];
+            int insertIndex = 1;
+            int currIndex = 1;
+
+            while(currIndex < num.Length)
+            {
+                if (currVal != num[currIndex])
+                {
+                    num[insertIndex] = num[currIndex];
+                    currVal = num[currIndex];
+                    insertIndex++;
+                }
+                
+                currIndex++;
+            }
+
+            return insertIndex;
+        }
+
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/578/
+        private bool ContainsDuplicate(int[] nums)
+        {
+
+            HashSet<int> lookup = new HashSet<int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (lookup.Contains(nums[i]))
+                {
+                    return true;
+                }
+                else 
+                {
+                    lookup.Add(nums[i]);
+                }
+            }
+
+            return false;
+        }
+
+
+        /// <summary>
+        ///  https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/549/
+        /// </summary>
+        private int SingleNumber(int[] nums)
+        {
+
+            HashSet<int> lookup = new HashSet<int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (lookup.Contains(nums[i]))
+                {
+                    lookup.Remove(nums[i]);
+                }
+                else
+                {
+                    lookup.Add(nums[i]);
+                }
+            }
+
+            return lookup.First();
+
+        }
+
+        /// <summary>
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/674/
+        /// </summary>
+        private int[] Intersect(int[] nums1, int[] nums2)
+        {
+            int[] res;
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            if (nums1.Length > nums2.Length)
+            {
+                dict = CreateDictionaryFromArray(nums1);
+                res = IntersectWithDictionary(dict, nums2);
+            }
+            else 
+            {
+                dict = CreateDictionaryFromArray(nums2);
+                res = IntersectWithDictionary(dict, nums1);
+            }
+
+            return res;
+        }
+
+        private Dictionary<int, int> CreateDictionaryFromArray(int[] nums)
+        {
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (dict.ContainsKey(nums[i]))
+                {
+                    int count = dict[nums[i]];
+                    dict[nums[i]] = count + 1;
+                }
+                else 
+                {
+                    dict.Add(nums[i], 1); 
+                }
+            }
+
+            return dict;
+        }
+
+        private int[] IntersectWithDictionary(Dictionary<int, int> dict, int[] nums)
+        {
+            List<int> result = new List<int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (dict.ContainsKey(nums[i]))
+                {
+                    result.Add(nums[i]);
+                   
+                    int count = dict[nums[i]] - 1;
+                    if (count == 0)
+                    {
+                        dict.Remove(nums[i]);
+                    }
+                    else
+                    {
+                        dict[nums[i]] = count;
+                    }
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        public void Main_Array()
+        {
+            int[,] matrix = new int[,]
+            {
                 { -9, -9, -9, 1, 1, 1 },
                 { 0, -9,  0,  4, 3, 2 },
                 { -9, -9, -9, 1, 2, 3 },
@@ -332,6 +469,21 @@ namespace Algos
             //Console.Write(winner);
 
             //KeyPair(new int[] { 1, 4, 45, 6, 11, 8 }, 16);
+
+            //int[] arr = new int[] { 0, 0, 0, 1, 1, 1, 2, 3, 3, 4, 4, 5 };
+            //var res = RemoveDuplicatesFromSortedArray(ref arr);
+
+            //int[] arr = new int[] { 0, 1, 2, 3 };
+            //var res = ContainsDuplicate(arr);
+
+            //int[] arr = new int[] { 0, 1, 0, 2, 1 };
+            //var res = SingleNumber(arr);
+
+            var nums1 = new int[] { 4, 9, 5 };
+            var nums2 = new int[] { 9, 4, 9, 8, 4 };
+            var res = Intersect(nums1, nums2);
+
+            Console.WriteLine(res);
 
             Console.ReadLine();
         }

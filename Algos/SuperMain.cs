@@ -7,8 +7,8 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            TreeChallenges obj = new TreeChallenges();
-            obj.Main_Tree();
+            ArrayChallenges obj = new ArrayChallenges();
+            obj.Main_Array();
 
 			Console.ReadLine();
         }

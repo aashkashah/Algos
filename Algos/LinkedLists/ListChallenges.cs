@@ -29,7 +29,7 @@ namespace Algos
             return node;
         }
 
-        /// Modify the linked list so that all even elements appear before odd elementss
+        /// Modify the linked list so that all even elements appear before odd elements
         /// Order of appearance of elements must not change
         static ListNode EvenAndOddList(ListNode node)
         {
