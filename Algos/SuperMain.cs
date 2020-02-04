@@ -7,7 +7,7 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            Challenges cl = new Challenges();
+            UrlAge cl = new UrlAge();
             cl.Main();
 
 			Console.ReadLine();
