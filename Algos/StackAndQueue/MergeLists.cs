@@ -56,9 +56,51 @@ namespace Algos
             }
         }
 
+        static List<int> MergeList(List<int> list1, List<int> list2)
+        {
+            int i = 0; int j = 0;
+            List<int> result = new List<int>();
+
+            while(i < list1.Count && j < list2.Count) 
+            {
+                if(list1[i] < list2[j]) 
+                {
+                    result.Add(list1[i]);
+                    i++;
+                }
+                else 
+                {
+                    result.Add(list2[j]);
+                    j++;
+                }
+            }
+
+            if(i < list1.Count) 
+            {
+                AppendListToAnother(list1, i, ref result);
+            }
+
+            if(j < list2.Count) 
+            {
+                AppendListToAnother(list2, j, ref result);
+            }
+
+            return result;
+        }
+
+        private static void AppendListToAnother(List<int> list, int index, ref List<int> output) 
+        {
+            while (index < list.Count)
+            {
+                output.Add(list[index]);
+                index++;
+            }
+        }
+
         public void Main_Stack()
         {
             var result = MergeListsInreverse(new List<int>() { 5, 10, 15, 40 }, new List<int>() { 2, 3, 20 });
+            var result2 = MergeList(new List<int>() { 5, 10, 15, 40 }, new List<int>() { 2, 3, 20 });
             
             foreach (var res in result)
             {

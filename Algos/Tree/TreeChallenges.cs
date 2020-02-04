@@ -448,7 +448,7 @@ namespace Algos
             return node;
         }
         
-        public void Main_Tree(string[] args)
+        public void Main_Tree()
         {
             Node tree = Tree.CreateTree();
 
@@ -457,7 +457,7 @@ namespace Algos
 			//Node lowestCommonAncentor = lca(tree, 10, 14);
 			//Console.WriteLine(lowestCommonAncentor.data);
 
-			//MirrorImageATree(tree);
+			MirrorImageATree(tree);
 
 			//LevelOrder(tree);
 
@@ -471,7 +471,7 @@ namespace Algos
 
 			//PrintRootToLeafPath(tree);
 
-			BinaryTreeToDoublyList(tree);
+			//BinaryTreeToDoublyList(tree);
 
         }
     }

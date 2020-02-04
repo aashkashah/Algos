@@ -59,7 +59,6 @@ namespace Algos
 			}
 
 			return res.ToString();
-
 		}
 
 		public static string TraverseString2(string str)
