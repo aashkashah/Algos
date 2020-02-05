@@ -421,6 +421,74 @@ namespace Algos
             return result.ToArray();
         }
 
+        /// <summary>
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/559/
+        /// </summary>
+        private int[] PlusOne(int[] digits)
+        {
+            // if all 9's 
+            bool allNines = true;
+            for (int i = 0; i < digits.Length; i++)
+            {
+                if (digits[i] != 9) 
+                {
+                    allNines = false;
+                    break;
+                }
+            }
+
+            if (allNines)
+            {
+                int[] result = new int[digits.Length + 1];
+                result[0] = 1;
+
+                return result;
+            }
+
+            // regular
+            int[] res = new int[digits.Length];
+            int carry = 1;
+
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                int sum = digits[i] + carry;
+
+                if (sum == 10)
+                {
+                    carry = 1;
+                    res[i] = 0;
+                }
+                else
+                {
+                    res[i] = sum;
+                    carry = 0;
+                }
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/567/
+        /// </summary>
+        private void MoveZeroes(ref int[] nums)
+        {
+            int index = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] != 0)
+                {
+                    nums[index] = nums[i];
+                    if (index != i)
+                    {
+                        nums[i] = 0;
+                    }
+                    index++;
+                }
+            }
+        }
+
         public void Main_Array()
         {
             int[,] matrix = new int[,]
@@ -479,11 +547,17 @@ namespace Algos
             //int[] arr = new int[] { 0, 1, 0, 2, 1 };
             //var res = SingleNumber(arr);
 
-            var nums1 = new int[] { 4, 9, 5 };
-            var nums2 = new int[] { 9, 4, 9, 8, 4 };
-            var res = Intersect(nums1, nums2);
+            //var nums1 = new int[] { 4, 9, 5 };
+            //var nums2 = new int[] { 9, 4, 9, 8, 4 };
+            //var res = Intersect(nums1, nums2);
 
-            Console.WriteLine(res);
+            //var arr = new int[] { 4, 3, 1 };
+            //var res = PlusOne(arr);
+
+            var arr = new int[] { 0, 1, 0, 3, 12 };
+            MoveZeroes(ref arr);
+
+            Console.WriteLine("1");
 
             Console.ReadLine();
         }

@@ -64,6 +64,7 @@
     <Compile Include="StackAndQueue\MergeLists.cs" />
     <Compile Include="StackAndQueue\QueueUsingTwoStacks.cs" />
     <Compile Include="StackAndQueue\TextEditor.cs" />
+    <Compile Include="StringManipulation\StringChallenges.cs" />
     <Compile Include="StringManipulation\StringManipulationChallenges.cs" />
     <Compile Include="SuperMain.cs" />
     <Compile Include="Tree\Traversal.cs" />

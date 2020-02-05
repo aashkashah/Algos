@@ -7,8 +7,8 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            ArrayChallenges obj = new ArrayChallenges();
-            obj.Main_Array();
+            StringChallenges obj = new StringChallenges();
+            obj.Main();
 
 			Console.ReadLine();
         }
