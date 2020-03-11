@@ -447,7 +447,18 @@ namespace Algos
 
             return node;
         }
-        
+
+        /// <summary>
+        /// Build tree from preorder and inorder traversal
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-medium/108/trees-and-graphs/788/
+        /// </summary>
+        public Node BuildTree(int[] preorder, int[] inorder)
+        {
+
+
+            return null;
+        }
+
         public void Main_Tree()
         {
             Node tree = Tree.CreateTree();

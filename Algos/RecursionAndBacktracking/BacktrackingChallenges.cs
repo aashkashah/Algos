@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Algos
 {
-    class RecursionAndBacktrackingChallenges
+    class BacktrackingChallenges
     {
         static int totalStepPerms = 0;
 
@@ -304,7 +304,154 @@ namespace Algos
             }
         }
 
-        public void Main_RnB(string[] args)
+        static List<string> GenerateParenthesis(int n)
+        {
+            List<string> ans = new List<string>();
+            GenerateParanthesisHelper(ans, "", 0, 0, n);
+
+            return ans;
+        }
+
+        static void GenerateParanthesisHelper(List<string> ans, string cur, int open, int close, int max)
+        {
+            if (cur.Length == max * 2)
+            {
+                ans.Add(cur);
+                return;
+            }
+
+            if (open < max)
+            {
+                GenerateParanthesisHelper(ans, cur + "(", open + 1, close, max);
+            }
+            if (close < max)
+            {
+                GenerateParanthesisHelper(ans, cur + ")", open, close + 1, max);
+            }
+        }
+
+        static IList<string> LetterCombinations(string digits)
+        {
+            PhoneNumerHelper(digits.ToCharArray(), new List<string>(), "", 0);
+            return null;
+        }
+
+        static void PhoneNumerHelper(char[] digits, List<string> result, string current, int index)
+        {
+            if (digits.Length == index)
+            {   
+                result.Add(current);
+                return;
+            }
+
+            var letters = GetOptions(digits[index]);
+            for (int i = 0; i < letters.Count; i++)
+            {   
+                PhoneNumerHelper(digits, result, current + letters[i], index + 1);
+            }
+
+        }
+
+        static List<char> GetOptions(char number)
+        {
+            switch (number)
+            {
+                case '2':
+                    return new List<char> { 'a', 'b', 'c' };
+                    
+                case '3':
+                    return new List<char> { 'd', 'e', 'f' };
+
+                case '4':
+                    return new List<char> { 'g', 'h', 'i' };
+
+                case '5':
+                    return new List<char> { 'j', 'k', 'l', 'm' };
+
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// https://leetcode.com/explore/interview/card/top-interview-questions-medium/109/backtracking/795/
+        /// Given a collection of distinct integers, return all possible permutations.
+        /// </summary>
+        static List<List<int>> PermuteDigits(int[] nums)
+        {
+            List<int> numList = new List<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                numList.Add(nums[i]);
+            }
+
+            List<List<int>> res = new List<List<int>>();
+            PermuteDigitsHelper(res, new List<int>(), numList);
+
+            return res;
+        }
+
+        static void PermuteDigitsHelper(List<List<int>> result, List<int> curr, List<int> nums)
+        {
+            if (nums.Count == 0)
+            {
+                result.Add(curr);
+                return;
+            }
+            // recursive
+
+            for (int i = 0; i < nums.Count; i++)
+            {
+                var elem = nums[i];
+                curr.Add(nums[i]);
+                nums.Remove(elem);
+
+                PermuteDigitsHelper(result, curr, nums);
+
+                nums.Add(elem);
+                curr.Remove(elem);
+            }
+        }
+
+        /// <summary>
+        /// https://leetcode.com/problems/combination-sum/
+        /// </summary>
+        static List<List<int>> CombinationSum(int[] candidates, int target)
+        {
+            List<List<int>> result = new List<List<int>>();
+            CombinationSumHelper(candidates, 0, target, new List<int>(), ref result);
+
+            return result;
+        }
+
+        static void CombinationSumHelper(int[] nums, int start, int remain, List<int> currList, ref List<List<int>> res)
+        {
+            if (remain < 0) return;
+            if (remain == 0)
+            {
+                // end
+                res.Add(currList);
+                return;
+            }
+            // recursive
+            for (int i = start; i < nums.Length; i++)
+            {   
+                var elem = nums[i];
+                // choose
+                currList.Add(nums[i]);
+
+                // explore
+                CombinationSumHelper(nums, i, remain - nums[i], currList, ref res);
+
+                // unchoose
+                currList.Remove(elem);
+                
+            }
+
+        }
+
+
+        public void Main()
         {
             //int fib = Fibonacci(6);
             //Console.WriteLine(fib);
@@ -325,8 +472,14 @@ namespace Algos
             //Sublists(list);
 
             //DiceRoll(3);
-            
-            SumOfSubsets(new int[] { 2, 4, 5 });
+
+            //SumOfSubsets(new int[] { 2, 4, 5 });
+
+            //LetterCombinations("234");
+
+            //var res = PermuteDigits(new int[] { 1, 2, 3 });
+
+            var res = CombinationSum(new int[] { 2, 3, 5 }, 8);
 
             Console.ReadLine();
 

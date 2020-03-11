@@ -7,10 +7,10 @@ namespace Algos
         public static void Main(string[] args)
         {
             // use this method to initiate sub programs 
-            StringChallenges obj = new StringChallenges();
+            NumberToShortNumber obj = new NumberToShortNumber();
             obj.Main();
 
-			Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }

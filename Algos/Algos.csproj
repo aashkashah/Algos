@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,8 +53,10 @@
     <Compile Include="Array\SlidingWindow.cs" />
     <Compile Include="BitManipulation\XOR.cs" />
     <Compile Include="Diverse\Challenges.cs" />
+    <Compile Include="Diverse\JsonStringMatch..cs" />
     <Compile Include="Diverse\UrlAge.cs" />
     <Compile Include="Diverse\TraverseString.cs" />
+    <Compile Include="DynamicProgramming\DynamicChallenges.cs" />
     <Compile Include="DynamicProgramming\Knapsack.cs" />
     <Compile Include="DynamicProgramming\LongestCommon.cs" />
     <Compile Include="Graph\Graph.cs" />
@@ -59,8 +67,10 @@
     <Compile Include="Matrix\ChessBoard.cs" />
     <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Matrix\ShortestPath.cs" />
+    <Compile Include="Numbers\Numbers.cs" />
     <Compile Include="RecursionAndBacktracking\BacktrackingChallenges.cs" />
-    <Compile Include="Search\SearchChallenges.cs" />
+    <Compile Include="SortingAndSearching\SearchChallenges.cs" />
+    <Compile Include="SortingAndSearching\SortingChallenges.cs" />
     <Compile Include="StackAndQueue\BalancedBrackets.cs" />
     <Compile Include="StackAndQueue\MergeLists.cs" />
     <Compile Include="StackAndQueue\QueueUsingTwoStacks.cs" />
@@ -75,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
