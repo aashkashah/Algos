@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Algos.Tree
+namespace Algos
 {
+    /// <summary>
+    /// Create a dictonary with functions like search, add, delete, enummerate
+    /// </summary>
     class NAryTree
     {
         public class Node
@@ -17,12 +17,8 @@ namespace Algos.Tree
 
         bool SearchWord(string word, Node dictionary)
         {
-            if (word.Length == 0)
-            {
-                return false;
-            }
-
             char[] wordArr = word.ToCharArray();
+
             for (int i = 0; i < wordArr.Length; i++)
             {
                 if (dictionary.letter == wordArr[i] && dictionary.isWord)
@@ -30,22 +26,14 @@ namespace Algos.Tree
                     return true;
                 }
                 else if (dictionary.children.ContainsKey(wordArr[i]))
-                {
-                    // recurse until end of word
-                    char temp = wordArr[i];
-                    word.Remove(i); //t
-                    var res = SearchWord(word, dictionary.children[temp]); //t
-                    if (res == false)
-                        return false;
+                {   
+                    dictionary = dictionary.children[wordArr[i]];
                 }
-
                 else
                 {
                     return false;
                 }
-
             }
-
 
             return false;
         }
