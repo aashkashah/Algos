@@ -78,6 +78,7 @@
     <Compile Include="StringManipulation\StringChallenges.cs" />
     <Compile Include="StringManipulation\StringManipulationChallenges.cs" />
     <Compile Include="SuperMain.cs" />
+    <Compile Include="Tree\NAryTree.cs" />
     <Compile Include="Tree\Traversal.cs" />
     <Compile Include="Tree\Tree.cs" />
     <Compile Include="Tree\TreeChallenges.cs" />
