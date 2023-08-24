@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algos.Matrix
+namespace Algos
 {
-    class MatrixChallenges
+    public class MatrixChallenges
     {
         enum Direction
         {
@@ -15,7 +15,7 @@ namespace Algos.Matrix
             Left,
             Top
         }
-        static void NumbersInSpiralOrder(int[,] matrix)
+        static void NumbersInSpiralOrder(char[,] matrix)
         {
 
             int row = 0;
@@ -75,6 +75,21 @@ namespace Algos.Matrix
                     row--;
                 }
             }
+        }
+
+        public void Main()
+        {
+            char[,] matrix = new char[,]
+            {
+                { 'a', 'b', 'c', 'd' },
+                { 'e', 'f', 'g', 'h' },
+                { 'i', 'j', 'k', 'l' },
+                { 'm', 'n', 'n', 'o' }
+            };
+
+            NumbersInSpiralOrder(matrix);
+
+            Console.ReadLine();
         }
     }
 }

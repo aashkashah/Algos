@@ -42,42 +42,6 @@ namespace Algos
 
             return null;
         }
-        
-        static List<int> FindShortestPath2(Dictionary<int, List<int>> graph, int start, int end)
-        {
-            // dfs implementation
-            Queue<int> queue = new Queue<int>();
-            HashSet<int> visited = new HashSet<int>();
-
-            List<int> edges;
-            graph.TryGetValue(start, out edges);
-            queue.Enqueue(start);
-
-            visited.Add(start);
-
-            while (queue.Count > 0)
-            {
-                var vertex = queue.Dequeue();
-                visited.Add(vertex);
-
-                if (vertex == end)
-                {
-                    // save past nodes
-                }
-
-                graph.TryGetValue(vertex, out edges);
-
-                foreach (var edge in edges)
-                {
-                    if (!visited.Contains(edge))
-                    {
-                        queue.Enqueue(edge);
-                    }
-                }
-            }
-
-            return null;
-        }
 
         public struct Node
         {
@@ -164,14 +128,20 @@ namespace Algos
             return -1;
         }
 
-        public static void Main2(string[] args)
+
+        /// <summary>
+        /// Topological sort
+        /// https://www.geeksforgeeks.org/given-sorted-dictionary-find-precedence-characters/
+        /// </summary>
+
+
+        public void Main()
         {
             Graph.AddVertex(1, new List<int>() { 2, 3, 7 });
             Graph.AddVertex(2, new List<int>() { 4, 5 });
             Graph.AddVertex(4, new List<int>() { 3 });
             Graph.AddVertex(5, new List<int>() { 3, 8 });
             Graph.AddVertex(8, new List<int>() { 10, 11 });
-            
             
         }
     }
