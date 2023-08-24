@@ -84,6 +84,7 @@
     <Compile Include="Tree\Tree.cs" />
     <Compile Include="Tree\TreeChallenges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TwoPointers\SameDirection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
