@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Algos.TwoPointers
 {
-    //test
     public class OppositeDirection
     {
+        //test
         public List<int> TwoSumSorted(List<int> arr, int target)
         {
             int l = 0;
